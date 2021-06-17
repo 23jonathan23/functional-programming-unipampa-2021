@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        ".sequelizerc": "javascript",
+        "findcarsbyscorecustomer.h": "c",
+        "stdio.h": "c",
+        "customer.h": "c",
+        "carrental.h": "c",
+        "stdlib.h": "c"
+    }
+}
