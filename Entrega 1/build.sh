@@ -7,7 +7,7 @@ OUTPUT="$BINDIR/bin"
 declare -a SOURCE=(
 "src/Utils/FileUtils.c"
 "src/UseCases/findCarsByScoreCustomer.c"
-"src/Presentation/UICarRental.c"
+"src/Presentation/CarRental.c"
 "src/Main.c"
 )
 ### Clean build
