@@ -5,10 +5,11 @@ OBJDIR="obj"
 BINDIR="bin"
 OUTPUT="$BINDIR/bin"
 declare -a SOURCE=(
-"src/Utils/FileUtils.c"
+"src/Utils/fileUtils.c"
+"src/Utils/customerHasScoreToRentThisCar.c"
 "src/UseCases/findCarsByScoreCustomer.c"
-"src/Presentation/CarRental.c"
-"src/Main.c"
+"src/Presentation/carRental.c"
+"src/main.c"
 )
 ### Clean build
 rm -f $OUTPUT

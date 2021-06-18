@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 
-#include <CarRental.h>
+#include <carRental.h>
 
 int main() {
     execute();
