@@ -5,6 +5,7 @@
         "stdio.h": "c",
         "customer.h": "c",
         "carrental.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "fileutils.h": "c"
     }
 }
