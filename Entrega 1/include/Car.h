@@ -3,7 +3,7 @@
 
 typedef struct Car{
     char plate[10];
-    char barnd[30];
+    char brand[30];
     char model[30];
     int year;
     int mileage;
