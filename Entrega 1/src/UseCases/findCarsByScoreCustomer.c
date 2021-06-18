@@ -2,10 +2,12 @@
 #include<stdlib.h>
 #include<string.h>
 
-#include <Car.h>
-#include <Customer.h>
+#include <car.h>
+#include <customer.h>
 
-#include <FileUtils.h>
+#include <fileUtils.h>
+#include <customerHasScoreToRentThisCar.h>
+
 #include <findCarsByScoreCustomer.h>
 
 void findCarsByScoreCustomer(TCar *cars, TCustomer customer) {
@@ -34,14 +36,19 @@ void findCarsByScoreCustomer(TCar *cars, TCustomer customer) {
 
                 index++;
             }
-
-            strcpy(cars[countCars-1].plate, &fieldCars[0][0]);
-            strcpy(cars[countCars-1].brand, &fieldCars[1][0]);
-            strcpy(cars[countCars-1].model, &fieldCars[2][0]);
             
-            cars[countCars-1].year = atoi(&fieldCars[3][0]);
-            cars[countCars-1].mileage = atoi(&fieldCars[4][0]);
-            cars[countCars-1].category = atoi(&fieldCars[5][0]);
+            int categoryCar = atoi(&fieldCars[5][0]);
+            
+            if(customerHasScoreToRentThisCar(customer.score, categoryCar)) {
+                strcpy(cars[countCars-1].plate, &fieldCars[0][0]);
+                strcpy(cars[countCars-1].brand, &fieldCars[1][0]);
+                strcpy(cars[countCars-1].model, &fieldCars[2][0]);
+                
+                cars[countCars-1].year = atoi(&fieldCars[3][0]);
+                cars[countCars-1].mileage = atoi(&fieldCars[4][0]);
+                cars[countCars-1].category = categoryCar;
+            }
+
         }
 
         countCars++;
