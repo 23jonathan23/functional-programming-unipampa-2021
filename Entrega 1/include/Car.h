@@ -7,7 +7,6 @@ typedef struct Car{
     char model[30];
     int year;
     int mileage;
-    int quantity;
     int category;
 }TCar;
 

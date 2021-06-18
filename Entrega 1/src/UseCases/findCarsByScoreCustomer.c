@@ -12,7 +12,7 @@ void findCarsByScoreCustomer(TCar *cars, TCustomer customer) {
     FILE *carList = loadFile("src\\Infra\\DataBase\\availableCars.txt");
     
     int maxRowLength = 100;
-    int maxFieldPerRow = 7;
+    int maxFieldPerRow = 6;
     char row[maxRowLength];
     char delimiter[3] = ";";
     char *field;
@@ -41,8 +41,7 @@ void findCarsByScoreCustomer(TCar *cars, TCustomer customer) {
             
             cars[countCars-1].year = atoi(&fieldCars[3][0]);
             cars[countCars-1].mileage = atoi(&fieldCars[4][0]);
-            cars[countCars-1].quantity = atoi(&fieldCars[5][0]);
-            cars[countCars-1].category = atoi(&fieldCars[6][0]);
+            cars[countCars-1].category = atoi(&fieldCars[5][0]);
         }
 
         countCars++;
