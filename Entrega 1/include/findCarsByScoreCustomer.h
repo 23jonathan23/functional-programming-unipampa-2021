@@ -1,8 +1,8 @@
 #ifndef __FINDCARS__
 #define __FINDCARS__
 
-#include <Car.h>
-#include <Customer.h>
+#include <car.h>
+#include <customer.h>
 
 void findCarsByScoreCustomer(TCar *cars, TCustomer customer);
 
