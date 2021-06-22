@@ -11,7 +11,7 @@
 #include <findCarsByScoreCustomer.h>
 
 void findCarsByScoreCustomer(TCar *cars, TCustomer customer) {
-    FILE *carList = loadFile("src\\Infra\\DataBase\\availableCars.txt");
+    FILE *carList = loadFile("src\\Infra\\DataBase\\availableCars.txt", "r");
     
     int maxRowLength = 100;
     int maxFieldPerRow = 6;
