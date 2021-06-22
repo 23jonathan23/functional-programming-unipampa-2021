@@ -1,0 +1,115 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#include <car.h>
+#include <customer.h>
+#include <fileUtils.h>
+#include <string.h>
+#include <stdbool.h>
+
+bool removeFromAvailableCars(TCar cars[], TCar car);
+void loadCars(TCar cars[], int size);
+void addToRentedCars(TCar car, TCustomer customer);
+
+void rentCar(TCar car, TCustomer customer) {
+    FILE *file = loadFile("src\\Infra\\DataBase\\availableCars.txt", "r");
+    int size = getTotalRecords(file);
+    TCar cars[size];
+    loadCars(cars, size);
+    
+    if (!removeFromAvailableCars(cars, car)) {
+        return;
+    }
+
+    addToRentedCars(car, customer);
+}
+
+bool removeFromAvailableCars(TCar cars[], TCar car) {
+    FILE *fileWrite = loadFile("src\\Infra\\DataBase\\availableCars.txt", "w");
+    FILE *file = loadFile("src\\Infra\\DataBase\\availableCars.txt", "r");
+    int length = getTotalRecords(file);
+
+    fprintf(fileWrite, "%i\n", length);
+
+    for (int i = 0; i < length; i++) {
+        if (strcmp(cars[i].plate, car.plate) != 0) {
+            fprintf(fileWrite, "%s;%s;%s;%i;%i;%i\n", cars[i].plate, cars[i].brand, cars[i].model, cars[i].year, cars[i].mileage, cars[i].category);
+        } else {
+            fclose(fileWrite);
+            fclose(file);
+            return false;
+        }
+    }
+    fclose(fileWrite);
+    fclose(file);
+    return true;
+}
+
+void loadCars(TCar cars[], int size) {
+    FILE *file = loadFile("src\\Infra\\DataBase\\availableCars.txt", "r");
+
+    char currentChar = fgetc(file);
+    while (currentChar != '\n') {
+        currentChar = fgetc(file);
+    }
+
+    int lineLength = 0;
+    char *line = malloc(100);
+    char c = fgetc(file);
+    for (int i = 0; i < size; i++) {
+        while (c != '\n') {
+            lineLength++;
+            c = fgetc(file);
+        }
+        fseek(file, lineLength * -1, SEEK_CUR);
+        fgets(line, lineLength, file);
+        fseek(file, lineLength, SEEK_CUR);
+
+        strcpy(cars[i].plate, strtok(line, ";"));
+        strcpy(cars[i].brand, strtok(NULL, ";"));
+        strcpy(cars[i].model, strtok(NULL, ";"));
+        cars[i].year = atoi(strtok(NULL, ";"));
+        cars[i].mileage = atoi(strtok(NULL, ";"));
+        cars[i].category = atoi(strtok(NULL, ";"));
+
+        lineLength = 0;
+    }
+    fclose(file);
+}
+
+void addToRentedCars(TCar car, TCustomer customer) {
+    FILE *fileRead = loadFile("src\\Infra\\DataBase\\rentedCars.txt", "r");
+    int size = getTotalRecords(fileRead);
+    char *cars[size];
+    
+    int lineLength = 0;
+    char c = fgetc(fileRead);
+    for (int i = 0; i < size; i++) {
+        while (c != '\n') {
+            lineLength++;
+            c = fgetc(fileRead);
+        }
+        fseek(fileRead, lineLength * -1, SEEK_CUR);
+        fgets(cars[i], lineLength, fileRead);
+        fseek(fileRead, lineLength, SEEK_CUR);
+    }
+
+    FILE *fileWrite = loadFile("src\\Infra\\DataBase\\rentedCars.txt", "w");
+    fprintf(fileWrite, "%i\n", size + 1);
+
+    for (int j = 0; j < size; j++) {
+        fprintf(fileWrite, "%s\n", cars[j]);
+    }
+    
+    char *plate = car.plate;
+    char *brand = car.brand;
+    char *model = car.model;
+    int year = car.year;
+    int mileage = car.mileage;
+    int category = car.category;
+    char *cpf = customer.document;
+
+    fprintf(fileWrite, "%s;%s;%s;%i;%i;%i;%s\n", plate, brand, model, year, mileage, category, cpf);
+    fclose(fileWrite);
+    fclose(fileRead);
+}
