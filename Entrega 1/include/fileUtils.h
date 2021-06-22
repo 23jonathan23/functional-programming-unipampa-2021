@@ -3,7 +3,7 @@
 
 typedef FILE (*file)(int);
 
-FILE *loadFile(char *path);
+FILE *loadFile(char *path, char *openType);
 
 int getTotalRecords(FILE *file);
 
