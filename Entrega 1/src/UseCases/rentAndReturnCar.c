@@ -7,10 +7,6 @@
 #include <string.h>
 #include <rentAndReturnCar.h>
 
-void removeFromAvailableCars(TCar cars[], TCar car);
-void loadCars(TCar cars[], int size);
-void addToRentedCars(TCar car, TCustomer customer);
-
 void rentCar(TCar car, TCustomer customer) {
     FILE *file = loadFile("src\\Infra\\DataBase\\availableCars.txt", "r");
     int size = getTotalRecords(file);
