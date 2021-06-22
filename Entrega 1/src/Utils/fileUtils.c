@@ -6,8 +6,8 @@
 
 typedef FILE (*file)(int);
 
-FILE *loadFile(char *path) {
-    FILE *file = fopen(path, "r");
+FILE *loadFile(char *path, char *openType) {
+    FILE *file = fopen(path, openType);
     
     if(file == NULL){
     	printf("Erro na abertura do arquivo\n");
