@@ -8,6 +8,7 @@ declare -a SOURCE=(
 "src/Utils/fileUtils.c"
 "src/Utils/customerHasScoreToRentThisCar.c"
 "src/UseCases/findCarsByScoreCustomer.c"
+"src/UseCases/rentAndReturnCar.c"
 "src/Presentation/carRental.c"
 "src/main.c"
 )
