@@ -5,6 +5,7 @@
 #include <customer.h>
 #include <fileUtils.h>
 #include <string.h>
+#include <rentAndReturnCar.h>
 
 void removeFromAvailableCars(TCar cars[], TCar car);
 void loadCars(TCar cars[], int size);
