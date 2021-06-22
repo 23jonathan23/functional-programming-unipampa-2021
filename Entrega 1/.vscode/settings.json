@@ -7,6 +7,6 @@
         "carrental.h": "c",
         "stdlib.h": "c",
         "fileutils.h": "c",
-        "rentAndReturnCar.h": "c"
+        "rentandreturncar.h": "c"
     }
 }
