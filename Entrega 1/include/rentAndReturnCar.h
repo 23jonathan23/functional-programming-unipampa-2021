@@ -4,9 +4,7 @@
 #include <car.h>
 #include <customer.h>
 
-void removeFromAvailableCars(TCar cars[], TCar car);
-
-void loadCars(TCar cars[], int size);
+void removeFromAvailableCars(TCar *cars, TCar car);
 
 void addToRentedCars(TCar car, TCustomer customer);
 
