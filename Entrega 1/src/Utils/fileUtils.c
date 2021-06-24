@@ -24,3 +24,18 @@ int getTotalRecords(FILE *file) {
 
     return qtdTotal;
 }
+
+int readLines(FILE *file, char lines[][1000]) {
+    char currentLine[1000];
+    
+    int qdtLine = 0;
+    while (fgets(currentLine, 1000, file)) {
+        if(qdtLine > 0) {
+            strcpy(&lines[qdtLine-1][0], currentLine);
+        }
+
+        qdtLine++;
+    }
+
+    return (qdtLine-1);
+}

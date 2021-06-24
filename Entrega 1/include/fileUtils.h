@@ -7,4 +7,6 @@ FILE *loadFile(char *path, char *openType);
 
 int getTotalRecords(FILE *file);
 
+int readLines(FILE *file, char lines[][1000]);
+
 #endif
