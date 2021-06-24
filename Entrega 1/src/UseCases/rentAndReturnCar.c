@@ -34,7 +34,27 @@ void removeFromAvailableCars(TCar *cars, TCar car) {
 }
 
 void addToRentedCars(TCar car, TCustomer customer) {
-    FILE *file = loadFile("src\\Infra\\DataBase\\rentedCars.txt", "a+");
+    FILE *file = loadFile("src\\Infra\\DataBase\\rentedCars.txt", "r");
+
+    int quantity;
+    
+    fscanf(file, "%i", &quantity);
+
+    quantity++;
+
+    char lines[100][1000];
+    
+    int qdtLine = readLines(file, lines);
+
+    fclose(file);
+
+    file = loadFile("src\\Infra\\DataBase\\rentedCars.txt", "w");
+
+    fprintf(file, "%i",quantity);
+
+    for(int i = 0; i < qdtLine; i++) {
+        fprintf(file,"\n%s", &lines[i][0]);
+    }
 
     fprintf(
         file, 
