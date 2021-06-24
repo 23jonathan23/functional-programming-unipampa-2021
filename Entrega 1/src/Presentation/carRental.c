@@ -10,7 +10,7 @@
 #include <loadCars.h>
 
 #include <findCarsByScoreCustomer.h>
-#include <rentAndReturnCar.h>
+#include <rentCar.h>
 
 void execute() {
     int size = getTotalAvailableCars();
