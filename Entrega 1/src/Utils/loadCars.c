@@ -7,7 +7,7 @@
 #include <loadCars.h>
 
 void loadCars(TCar *cars) {
-    FILE *file = loadFile("src\\Infra\\DataBase\\availableCars.txt", "r");
+    FILE *file = loadFile("..\\src\\Infra\\DataBase\\availableCars.txt", "r");
     int size = getTotalAvailableCars();
 
     int maxRowLength = 100;
@@ -51,7 +51,7 @@ void loadCars(TCar *cars) {
 }
 
 int getTotalAvailableCars() {
-    FILE *file = loadFile("src\\Infra\\DataBase\\availableCars.txt", "r");
+    FILE *file = loadFile("..\\src\\Infra\\DataBase\\availableCars.txt", "r");
 
     int qtdTotal = 0;
 
@@ -63,7 +63,7 @@ int getTotalAvailableCars() {
 }
 
 int getTotalRentedCars() {
-    FILE *file = loadFile("src\\Infra\\DataBase\\rentedCars.txt", "r");
+    FILE *file = loadFile("..\\src\\Infra\\DataBase\\rentedCars.txt", "r");
 
     int qtdTotal = 0;
 

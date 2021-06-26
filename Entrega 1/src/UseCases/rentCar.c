@@ -15,7 +15,7 @@ void rentCar(TCar car, TCustomer customer) {
 }
 
 void removeFromAvailableCars(TCar car) {
-    FILE *file = loadFile("src\\Infra\\DataBase\\availableCars.txt", "r");
+    FILE *file = loadFile("..\\src\\Infra\\DataBase\\availableCars.txt", "r");
 
     int quantity;
     
@@ -29,7 +29,7 @@ void removeFromAvailableCars(TCar car) {
 
     fclose(file);
 
-    file = loadFile("src\\Infra\\DataBase\\availableCars.txt", "w");
+    file = loadFile("..\\src\\Infra\\DataBase\\availableCars.txt", "w");
 
     fprintf(file, "%i\n",quantity);
 
@@ -43,7 +43,7 @@ void removeFromAvailableCars(TCar car) {
 }
 
 void addToRentedCars(TCar car, TCustomer customer) {
-    FILE *file = loadFile("src\\Infra\\DataBase\\rentedCars.txt", "r");
+    FILE *file = loadFile("..\\src\\Infra\\DataBase\\rentedCars.txt", "r");
 
     int quantity;
     
@@ -57,7 +57,7 @@ void addToRentedCars(TCar car, TCustomer customer) {
 
     fclose(file);
 
-    file = loadFile("src\\Infra\\DataBase\\rentedCars.txt", "w");
+    file = loadFile("..\\src\\Infra\\DataBase\\rentedCars.txt", "w");
 
     fprintf(file, "%i",quantity);
 
