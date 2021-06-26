@@ -7,8 +7,6 @@ void loadCars(TCar *cars);
 
 int getTotalAvailableCars();
 
-int getTotalCustomers();
-
 int getTotalRentedCars();
 
 #endif

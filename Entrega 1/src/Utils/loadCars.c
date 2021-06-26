@@ -62,18 +62,6 @@ int getTotalAvailableCars() {
     return qtdTotal;
 }
 
-int getTotalCustomers() {
-    FILE *file = loadFile("src\\Infra\\DataBase\\customers.txt", "r");
-
-    int qtdTotal = 0;
-
-    fscanf(file, "%d\n", &qtdTotal);
-
-    fclose(file);
-
-    return qtdTotal;
-}
-
 int getTotalRentedCars() {
     FILE *file = loadFile("src\\Infra\\DataBase\\rentedCars.txt", "r");
 
