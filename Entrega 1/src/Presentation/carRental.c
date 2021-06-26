@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include <time.h>
 
 #include <carRental.h>
 
@@ -111,7 +112,50 @@ void findCarsMenu() {
 
 
 void rentCarMenu() {
+    char document[11];
+    TCustomer customer;
+
+    char plate[10];
+    TCar car;
+
+    do {
+        printf("\nPara alugar um carro, por favor informe o seu documento:\n");
+        scanf("%s", document);
+
+        getCustomerByDocument(document, &customer);
+
+        if(strcmp(customer.document, document) != 0) {
+            printf("\nCliente não encontrado, por favor revise os dados em tente novamente.\n");
+            continue;
+        }
+
+        printf("\nAgora informe a placa do carro que deseja alugar:\n");
+        scanf("%s", plate);
+
+        findCarByPlate(&car, customer, plate);
+
+        if(strcmp(car.plate, plate) != 0) {
+            printf("\nCarro não encontrado, por favor em caso de duvida utilize a opção de verificar os carros disponiveis no menu.\n");
+            continue;
+        }
+
+    } while(strcmp(car.plate, plate) != 0);
+
+    rentCar(car, customer);
+
+    printf("\nCarro alugado com sucesso!.\n");
+
+    printf("\nPlaca: %s, Marca: %s, Modelo: %s, Ano: %i, KM: %i" , 
+            car.plate, car.brand, car.model, car.year, car.mileage);
     
+    time_t dateTimeNow;
+    char dateTimeNowFormated[100];
+
+    dateTimeNow = time(NULL);
+
+    strftime( dateTimeNowFormated, sizeof(dateTimeNowFormated), "%d.%m.%Y - %H:%M:%S", localtime( &dateTimeNow ) );
+
+    printf( "\n\nData/Hora da retirada: %s\n", dateTimeNowFormated );
 }
 
 void deliverCarMenu() {
