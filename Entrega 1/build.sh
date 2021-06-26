@@ -7,6 +7,7 @@ OUTPUT="$BINDIR/bin"
 declare -a SOURCE=(
 "src/Utils/fileUtils.c"
 "src/Utils/loadCars.c"
+"src/Utils/loadCustomers.c"
 "src/Utils/customerHasScoreToRentThisCar.c"
 "src/UseCases/findCarsByScoreCustomer.c"
 "src/UseCases/rentCar.c"
