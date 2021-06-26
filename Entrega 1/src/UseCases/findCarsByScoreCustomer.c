@@ -33,3 +33,26 @@ void findCarsByScoreCustomer(TCar *cars, TCustomer customer) {
        }
     }
 }
+
+void findCarByPlate(TCar *car, TCustomer customer, char plate[10]) {
+    int size = getTotalAvailableCars();
+    TCar cars[size];
+
+    findCarsByScoreCustomer(cars, customer);
+
+    for(int i = 0; i < size; i++) {
+        if(cars[i].category == 0) continue;
+
+        if(strcmp(cars[i].plate, plate) == 0) {
+            strcpy(car->plate, cars[i].plate);
+            strcpy(car->brand, cars[i].brand);
+            strcpy(car->model, cars[i].model);
+
+            car->year = cars[i].year;
+            car->mileage = cars[i].mileage;
+            car->category = cars[i].category;
+
+            break;
+        }
+    }
+}

@@ -6,4 +6,6 @@
 
 void findCarsByScoreCustomer(TCar *cars, TCustomer customer);
 
+void findCarByPlate(TCar *car, TCustomer customer, char plate[10]);
+
 #endif
