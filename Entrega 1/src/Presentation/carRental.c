@@ -13,6 +13,7 @@
 
 #include <findCarsByScoreCustomer.h>
 #include <rentCar.h>
+#include <deliverCar.h>
 
 void execute() {
     int opc;
@@ -159,7 +160,17 @@ void rentCarMenu() {
 }
 
 void deliverCarMenu() {
+    
+    TCar car;
+    strcpy(car.plate, "BVX0X05");
+    strcpy(car.brand, "TOYOTA");
+    strcpy(car.model, "COROLA");
+    car.year = 2021;
+    car.mileage = 90000;
+    car.category = 2;
 
+    float value;
+    value = returnCar(car, 4.7, 5.8, 200);
 }
 
 void reportCarsMenu() {
