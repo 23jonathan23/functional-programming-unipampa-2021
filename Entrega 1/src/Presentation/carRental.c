@@ -170,7 +170,7 @@ void deliverCarMenu() {
     car.category = 2;
 
     float value;
-    value = returnCar(car, 4.7, 5.8, 200);
+    value = returnCar(car, 4.7, 5.8, 199999);
 }
 
 void reportCarsMenu() {
