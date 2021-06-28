@@ -1,8 +1,10 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include <stdbool.h>
 
 #include <car.h>
+#include <rentedCar.h>
 #include <fileUtils.h>
 #include <loadCars.h>
 
@@ -47,6 +49,54 @@ void loadCars(TCar *cars) {
         count++;
     }
 
+    fclose(file);
+}
+
+void loadRentedCars(TRentedCar rentedCars[]) {
+    FILE *file = loadFile("..\\src\\Infra\\DataBase\\rentedCars.txt", "r");
+    
+    char ch;
+    while ((ch = fgetc(file)) != '\n');
+
+    int length = 0;
+    int counter = 0;
+    int spot;
+    char *line;
+
+    int endSpot;
+    while (ch != EOF) {
+        spot = ftell(file);
+
+        ch = fgetc(file);
+        length++;
+        while (ch != EOF && ch != '\n') {
+            ch = fgetc(file);
+            length++;
+        }
+
+        endSpot = ftell(file);
+
+        fseek(file, spot, SEEK_SET);
+
+        line = malloc(sizeof(char) * length);
+        fgets(line, length, file);
+
+        strcpy(rentedCars[counter].car.plate, strtok(line, ";"));
+        strcpy(rentedCars[counter].car.brand, strtok(NULL, ";"));
+        strcpy(rentedCars[counter].car.model, strtok(NULL, ";"));
+        rentedCars[counter].car.year = atoi(strtok(NULL, ";"));
+        rentedCars[counter].car.mileage = atoi(strtok(NULL, ";"));
+        rentedCars[counter].car.category = atoi(strtok(NULL, ";"));
+
+        strcpy(rentedCars[counter].cpf, strtok(NULL, ";"));
+        rentedCars[counter].seconds = atol(strtok(NULL, ";"));
+        
+        fseek(file, endSpot, SEEK_SET);
+        free(line);
+
+        length = 0;
+        counter++;
+    }
     fclose(file);
 }
 
