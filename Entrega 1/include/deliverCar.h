@@ -8,7 +8,7 @@ float returnCar(TCar car, float pricePerDayCategory, float pricePerExtraQuilomet
 
 void returnToAvailableCars(TCar car, int quilometers);
 
-float removeFromRentedCars(TRentedCar rentedCars[], TCar car, float pricePerDayCategory, float pricePerExtraQuilometer, int quilometers);
+float removeFromRentedCars(TCar car, float pricePerDayCategory, float pricePerExtraQuilometer, int quilometers);
 
 void addPoints(TRentedCar rentedCar, int quilometers);
 
