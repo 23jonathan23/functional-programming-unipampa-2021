@@ -13,31 +13,20 @@
 #include <deliverCar.h>
 
 float returnCar(TCar car, float pricePerDayCategory, float pricePerExtraQuilometer, int quilometers) {
-    int total = getTotalRentedCars();
-    TRentedCar rentedCars[total];
-    loadRentedCars(rentedCars);
-
     float value;
-    value = removeFromRentedCars(rentedCars, car, pricePerDayCategory, pricePerExtraQuilometer, quilometers);
+    value = removeFromRentedCars(car, pricePerDayCategory, pricePerExtraQuilometer, quilometers);
     returnToAvailableCars(car, quilometers);
-
     return value;
 }
 
 void returnToAvailableCars(TCar car, int quilometers) {
     int records = getTotalAvailableCars();
-    FILE *file = loadFile("..\\src\\Infra\\DataBase\\availableCars.txt", "w");
-
-    fprintf(file, "%i\n", records + 1);
-
     TCar cars[records];
     loadCars(cars);
 
-    TCar cs;
-    for (int ii = 0; ii < records; ii++) {
-        cs = cars[ii];
-        printf("%s;%s;%s\n", cs.plate, cs.brand, cs.model);
-    }
+    FILE *file = loadFile("..\\src\\Infra\\DataBase\\availableCars.txt", "w");
+
+    fprintf(file, "%i\n", records + 1);
 
     for (int i = 0; i < records; i++) {
         fprintf(file, "%s;%s;%s;%i;%i;%i\n",
@@ -60,10 +49,11 @@ void returnToAvailableCars(TCar car, int quilometers) {
     fclose(file);
 }
 
-float removeFromRentedCars(TRentedCar rentedCars[], TCar car, float pricePerDayCategory, float pricePerExtraQuilometer, int quilometers) {
-    float priceToPay;
-
+float removeFromRentedCars(TCar car, float pricePerDayCategory, float pricePerExtraQuilometer, int quilometers) {
     int records = getTotalRentedCars();
+    TRentedCar rentedCars[records];
+    loadRentedCars(rentedCars);
+
     FILE *file = loadFile("..\\src\\Infra\\DataBase\\rentedCars.txt", "w");
 
     fprintf(file, "%i\n", records - 1);
@@ -76,7 +66,7 @@ float removeFromRentedCars(TRentedCar rentedCars[], TCar car, float pricePerDayC
         }
     }
 
-    priceToPay = calculatePrice(pricePerDayCategory, pricePerExtraQuilometer, quilometers, rentedCar);
+    float priceToPay = calculatePrice(pricePerDayCategory, pricePerExtraQuilometer, quilometers, rentedCar);
     addPoints(rentedCar, quilometers);
 
     for (int i = 0; i < records; i++) {
@@ -99,45 +89,51 @@ float removeFromRentedCars(TRentedCar rentedCars[], TCar car, float pricePerDayC
 }
 
 void addPoints(TRentedCar rentedCar, int quilometers) {
-    FILE *customersFile = loadFile("..\\src\\Infra\\DataBase\\customers.txt", "r");
-    int records = getTotalRecords(customersFile);
-
-    FILE *file = loadFile("..\\src\\Infra\\DataBase\\customers.txt", "w");
+    int records = getTotalCustomers();
     TCustomer customers[records];
     loadCustomers(customers);
+
+    FILE *file = loadFile("..\\src\\Infra\\DataBase\\customers.txt", "w");
 
     fprintf(file, "%i\n", records);
 
     for (int i = 0; i < records; i++) {
-        if (strcmp(customers[i].document, rentedCar.cpf) != 0) {
-            fprintf(file, "%s;%s;%i\n",
-            customers[i].name,
-            customers[i].document,
-            customers[i].score);
-        } else {
-            customers[i].score += quilometers / 10;
-            fprintf(file, "%s;%s;%i\n",
-            customers[i].name,
-            customers[i].document,
-            customers[i].score);
+        if (strcmp(customers[i].document, rentedCar.cpf) == 0) {
+            customers[i].score += (quilometers - rentedCar.car.mileage) / 10;
         }
+
+        fprintf(file, "%s;%s;%i\n",
+            customers[i].name,
+            customers[i].document,
+            customers[i].score);
     }
-    fclose(customersFile);
     fclose(file);
 }
 
 float calculatePrice(float pricePerDayCategory, float pricePerExtraQuilometer, int quilometers, TRentedCar rentedCar) {
     float price = 0.0;
+
+    printf("%f\n", price);
     
     time_t curSeconds;
     curSeconds = time(NULL);
 
+    printf("%ld\n", curSeconds);
+
     long seconds = curSeconds - rentedCar.seconds;
     long days = seconds / 86400;
 
+    printf("%li\n", days);
+
     price += (float) days * pricePerDayCategory;
 
-    price += (float) (quilometers - rentedCar.car.mileage) * pricePerExtraQuilometer;
+    printf("%f\n", price);
+
+    printf("%i\n%i\n%f\n", quilometers, rentedCar.car.mileage, pricePerExtraQuilometer);
+
+    price += (quilometers - rentedCar.car.mileage) * pricePerExtraQuilometer;
+
+    printf("%f\n", price);
 
     return price;
 }
