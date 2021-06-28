@@ -9,6 +9,7 @@
         "fileutils.h": "c",
         "rentandreturncar.h": "c",
         "loadcars.h": "c",
-        "loadcustomers.h": "c"
+        "loadcustomers.h": "c",
+        "deliverCar.h": "c"
     }
 }
