@@ -183,6 +183,7 @@ void reportCarsMenu() {
     char firstLineRenteds;
 
     fscanf(fileAvailables, "%d\n", &firstLineAvailables);
+    fscanf(fileRenteds, "%d\n", &firstLineRenteds);
 
     while ((fgets(lineCarsAvailables, sizeof(lineCarsAvailables), fileAvailables)) != NULL && (fgets(lineCarsRenteds, sizeof(lineCarsRenteds), fileRenteds)) != NULL)
     {
