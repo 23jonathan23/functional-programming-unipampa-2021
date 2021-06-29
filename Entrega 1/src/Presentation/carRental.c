@@ -174,5 +174,32 @@ void deliverCarMenu() {
 }
 
 void reportCarsMenu() {
-    
+
+    FILE *fileAvailables = loadFile("..\\src\\Infra\\DataBase\\availableCars.txt", "r");
+    FILE *fileRenteds = loadFile("..\\src\\Infra\\DataBase\\rentedCars.txt", "r");
+    char lineCarsAvailables[100];
+    char lineCarsRenteds[100];
+    char firstLineAvailables;
+    char firstLineRenteds;
+
+    fscanf(fileAvailables, "%d\n", &firstLineAvailables);
+
+    while ((fgets(lineCarsAvailables, sizeof(lineCarsAvailables), fileAvailables)) != NULL && (fgets(lineCarsRenteds, sizeof(lineCarsRenteds), fileRenteds)) != NULL)
+    {
+        if(lineCarsAvailables == firstLineAvailables && lineCarsRenteds == firstLineRenteds) break;
+
+        else{
+            printf("\n\n#---------------------Relatorio de Veiculos---------------------------------#\n");
+            printf("#################################################################################\n");
+            printf("#                         Veiculos Disponiveis:                                 #\n");
+            printf("#################################################################################\n");
+            printf("%s", lineCarsAvailables);
+
+            printf("#################################################################################\n");
+            printf("#                         Veiculos Alugados:                                    #\n");
+            printf("#################################################################################\n");
+            printf("%s", lineCarsRenteds);
+            continue;
+        }
+    }
 }
