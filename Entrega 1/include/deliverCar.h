@@ -4,11 +4,11 @@
 #include <car.h>
 #include <customer.h>
 
-float returnCar(TCar car, float pricePerDayCategory, float pricePerExtraQuilometer, int quilometers);
+float returnCar(char plate[], float pricePerDayCategory, float pricePerExtraQuilometer, int quilometers);
 
-void returnToAvailableCars(TCar car, int quilometers);
+void returnToAvailableCars(TRentedCar car, int quilometers);
 
-float removeFromRentedCars(TCar car, float pricePerDayCategory, float pricePerExtraQuilometer, int quilometers);
+float removeFromRentedCars(TRentedCar car, float pricePerDayCategory, float pricePerExtraQuilometer, int quilometers);
 
 void addPoints(TRentedCar rentedCar, int quilometers);
 
