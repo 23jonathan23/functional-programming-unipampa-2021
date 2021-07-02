@@ -52,11 +52,46 @@ void loadCars(TCar *cars) {
     fclose(file);
 }
 
+bool isCarRented(char plate[]) {
+    int records = getTotalRentedCars();
+    TRentedCar rentedCars[records];
+    loadRentedCars(rentedCars);
+
+    for (int i = 0; i < records; i++) {
+        if (strcmp(plate, rentedCars[i].car.plate) == 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void getRentedCar(char plate[], TRentedCar *car) {
+    int records = getTotalRentedCars();
+    TRentedCar rentedCars[records];
+    loadRentedCars(rentedCars);
+
+    for (int i = 0; i < records; i++) {
+        if (strcmp(plate, rentedCars[i].car.plate) == 0) {
+            strcpy(car->car.plate, rentedCars[i].car.plate);
+            strcpy(car->car.brand, rentedCars[i].car.brand);
+            strcpy(car->car.model, rentedCars[i].car.model);
+            car->car.year = rentedCars[i].car.year;
+            car->car.mileage = rentedCars[i].car.mileage;
+            car->car.category = rentedCars[i].car.category;
+            strcpy(car->cpf, rentedCars[i].cpf);
+            car->seconds = rentedCars[i].seconds;
+        }
+    }
+}
+
 void loadRentedCars(TRentedCar rentedCars[]) {
     FILE *file = loadFile("..\\src\\Infra\\DataBase\\rentedCars.txt", "r");
     
     char ch;
-    while ((ch = fgetc(file)) != '\n');
+    ch = fgetc(file);
+    while (ch != '\n' && ch != EOF) {
+        ch = fgetc(file);
+    }
 
     int length = 0;
     int counter = 0;
