@@ -10,6 +10,7 @@
 
 #include <loadCars.h>
 #include <loadCustomers.h>
+#include <fileUtils.h>
 
 #include <findCarsByScoreCustomer.h>
 #include <rentCar.h>
@@ -38,7 +39,7 @@ void execute() {
                     break;          	 
                 
                 case 4:
-                    reportCarsMenu();
+                    //reportCarsMenu();
                     break;
 
                 default:
@@ -160,19 +161,45 @@ void rentCarMenu() {
 }
 
 void deliverCarMenu() {
-    
-    TCar car;
-    strcpy(car.plate, "BVX0X05");
-    strcpy(car.brand, "TOYOTA");
-    strcpy(car.model, "COROLA");
-    car.year = 2021;
-    car.mileage = 90000;
-    car.category = 2;
+
+    char plate[10];
+
+    printf("Digite a placa do carro que vocês quer devolver: ");
+    scanf("%s", plate);
+
+    if(!isCarRented(plate)) {
+        printf("Esse carro não foi alugado aqui!\n");
+        return;
+    }
+
+    TRentedCar car;
+    getRentedCar(plate, &car);
+
+    printf("O carro é da categoria %i \n", car.car.category);
+
+    float pricePerDayCategory;
+
+    float pricePerExtraQuilometer;
+
+    int quilometers;
+
+    printf("Digite o valor da diaria do carro dessa categoria: ");
+    scanf("%f", &pricePerDayCategory);
+
+    printf("Digite o valor do quilometro extra do carro dessa categoria: ");
+    scanf("%f", &pricePerExtraQuilometer);
+
+    printf("Digite a quilometragem atual do carro a ser devolvido: ");
+    scanf("%i", &quilometers);
 
     float value;
-    value = returnCar(car, 4.7, 5.8, 199999);
+    value = returnCar(plate, pricePerDayCategory, pricePerExtraQuilometer, quilometers);
+
+    printf("O carro foi retornado com sucesso!\n");
+    printf("O valor a ser pago é %.2f\n", value);
 }
 
+/*
 void reportCarsMenu() {
 
     FILE *fileAvailables = loadFile("..\\src\\Infra\\DataBase\\availableCars.txt", "r");
@@ -204,3 +231,4 @@ void reportCarsMenu() {
         }
     }
 }
+*/
