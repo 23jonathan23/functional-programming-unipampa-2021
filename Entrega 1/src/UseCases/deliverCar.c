@@ -108,10 +108,10 @@ void addPoints(TRentedCar rentedCar, int quilometers) {
 float calculatePrice(float pricePerDayCategory, float pricePerExtraQuilometer, int quilometers, TRentedCar rentedCar) {
     float price = 0.0;
     
-    time_t curSeconds;
-    curSeconds = time(NULL);
+    time_t currentSeconds;
+    currentSeconds = time(NULL);
 
-    long seconds = curSeconds - rentedCar.seconds;
+    long seconds = currentSeconds - rentedCar.seconds;
     long days = seconds / 86400;
 
     price += (float) days * pricePerDayCategory;
