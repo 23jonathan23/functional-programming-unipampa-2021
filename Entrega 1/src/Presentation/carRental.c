@@ -39,7 +39,7 @@ void execute() {
                     break;          	 
                 
                 case 4:
-                    //reportCarsMenu();
+                    reportCarsMenu();
                     break;
 
                 default:
@@ -199,36 +199,38 @@ void deliverCarMenu() {
     printf("O valor a ser pago é %.2f\n", value);
 }
 
-/*
+
 void reportCarsMenu() {
 
-    FILE *fileAvailables = loadFile("..\\src\\Infra\\DataBase\\availableCars.txt", "r");
-    FILE *fileRenteds = loadFile("..\\src\\Infra\\DataBase\\rentedCars.txt", "r");
-    char lineCarsAvailables[100];
-    char lineCarsRenteds[100];
-    char firstLineAvailables;
-    char firstLineRenteds;
+    int i;
+    int sizeAvailable = getTotalAvailableCars();
+    TCar cars[sizeAvailable];
 
-    fscanf(fileAvailables, "%d\n", &firstLineAvailables);
-    fscanf(fileRenteds, "%d\n", &firstLineRenteds);
+    loadCars(cars);
 
-    while ((fgets(lineCarsAvailables, sizeof(lineCarsAvailables), fileAvailables)) != NULL && (fgets(lineCarsRenteds, sizeof(lineCarsRenteds), fileRenteds)) != NULL)
-    {
-        if(lineCarsAvailables == firstLineAvailables && lineCarsRenteds == firstLineRenteds) break;
+    printf("#################################################################################\n");
+    printf("#                              Carros disponiveis:                              #\n");
 
-        else{
-            printf("\n\n#---------------------Relatorio de Veiculos---------------------------------#\n");
-            printf("#################################################################################\n");
-            printf("#                         Veiculos Disponiveis:                                 #\n");
-            printf("#################################################################################\n");
-            printf("%s", lineCarsAvailables);
-
-            printf("#################################################################################\n");
-            printf("#                         Veiculos Alugados:                                    #\n");
-            printf("#################################################################################\n");
-            printf("%s", lineCarsRenteds);
-            continue;
-        }
+    for(i = 0; i <= sizeAvailable; i++){
+        printf("\nPlaca: %s\n Marca: %s\n Modelo: %s\n Ano: %i\n KM: %i\n Categoria: %i\n" , 
+            cars[i].plate, cars[i].brand, cars[i].model, cars[i].year, cars[i].mileage, cars[i].category);
     }
+
+    int j;
+    int sizeRented = getTotalRentedCars();
+    TRentedCar rentedCars[sizeRented];
+
+    loadRentedCars(rentedCars);
+
+    printf("#################################################################################\n");
+    printf("#                              Carros alugados:                                 #\n");
+
+    for(j = 0; j <= sizeRented; j++){
+        printf("\nPlaca: %s\n Marca: %s\n Modelo: %s\n Ano: %i\n KM: %i\n Categoria: %i\n" , 
+            rentedCars[i].car.plate, rentedCars[i].car.brand, rentedCars[i].car.model, rentedCars[i].car.year, rentedCars[i].car.mileage, rentedCars[i].car.category);
+    }
+
+    printf("Total disponiveis: %i\n", getTotalAvailableCars());
+    printf("Total alugados: %i\n", getTotalRentedCars());
+    printf("#################################################################################\n");
 }
-*/
