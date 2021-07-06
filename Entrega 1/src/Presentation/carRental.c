@@ -202,8 +202,6 @@ void deliverCarMenu() {
 
 // função que gera o relatório de carros disponiveis e alugados
 void reportCarsMenu() {
-
-    int i;
     int sizeAvailable = getTotalAvailableCars();
     TCar cars[sizeAvailable];
 
@@ -212,12 +210,11 @@ void reportCarsMenu() {
     printf("#################################################################################\n");
     printf("#                              Carros disponiveis:                              #\n");
 
-    for(i = 0; i <= sizeAvailable; i++){
+    for(int i = 0; i < sizeAvailable; i++){
         printf("\nPlaca: %s\n Marca: %s\n Modelo: %s\n Ano: %i\n KM: %i\n Categoria: %i\n" , 
             cars[i].plate, cars[i].brand, cars[i].model, cars[i].year, cars[i].mileage, cars[i].category);
     }
 
-    int j;
     int sizeRented = getTotalRentedCars();
     TRentedCar rentedCars[sizeRented];
 
@@ -226,12 +223,12 @@ void reportCarsMenu() {
     printf("#################################################################################\n");
     printf("#                              Carros alugados:                                 #\n");
 
-    for(j = 0; j <= sizeRented; j++){
+    for(int i = 0; i < sizeRented; i++){
         printf("\nPlaca: %s\n Marca: %s\n Modelo: %s\n Ano: %i\n KM: %i\n Categoria: %i\n" , 
             rentedCars[i].car.plate, rentedCars[i].car.brand, rentedCars[i].car.model, rentedCars[i].car.year, rentedCars[i].car.mileage, rentedCars[i].car.category);
     }
 
-    printf("Total disponiveis: %i\n", getTotalAvailableCars());
-    printf("Total alugados: %i\n", getTotalRentedCars());
+    printf("Total disponiveis: %i\n", sizeAvailable);
+    printf("Total alugados: %i\n", sizeRented);
     printf("#################################################################################\n");
 }
