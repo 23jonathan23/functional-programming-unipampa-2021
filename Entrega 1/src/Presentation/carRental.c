@@ -200,6 +200,7 @@ void deliverCarMenu() {
 }
 
 
+// função que gera o relatório de carros disponiveis e alugados
 void reportCarsMenu() {
 
     int i;
