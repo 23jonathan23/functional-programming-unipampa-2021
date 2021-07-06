@@ -200,7 +200,6 @@ void deliverCarMenu() {
 }
 
 
-// função que gera o relatório de carros disponiveis e alugados
 void reportCarsMenu() {
     int sizeAvailable = getTotalAvailableCars();
     TCar cars[sizeAvailable];
