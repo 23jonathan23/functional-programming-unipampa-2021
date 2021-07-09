@@ -1,3 +1,7 @@
+realEstate(alegrete).
+realEstate(baitachao).
+realEstate(ibirapuita).
+
 % sale(realEstate, housingDetails, housingPrice, nrCustumer, saller)
 sale(alegrete, 'Casa 3 quartos', 300000, 1010, maria).
 sale(alegrete, 'Apartamento 1 quarto', 1010, maria).
@@ -14,6 +18,43 @@ sale(baitachao, 'Casa 1 quarto', 150000, 2012, paulo).
 sale(alegrete, 'Apartamento 3 quartos', 650000, 1013, miguel).
 sale(alegrete, 'Apartamento 1 quarto', 145000, 1013, miguel).
 sale(alegrete, 'Apartamento 2 quartos', 160000, 1013, miguel).
+
+seller(maria).
+seller(paulo).
+seller(ana).
+seller(jose).
+seller(lucas).
+seller(marisa).
+seller(rosa).
+seller(miguel).
+
+nrCustumer(1010).
+nrCustumer(1011).
+nrCustumer(1012).
+nrCustumer(1013).
+nrCustumer(2010).
+nrCustumer(2011).
+nrCustumer(2012).
+nrCustumer(3010).
+nrCustumer(3011).
+nrCustumer(3012).
+
+age(25).
+age(35).
+age(39).
+age(40).
+age(45).
+age(47).
+age(53).
+age(55).
+age(60).
+age(65).
+
+occupation(veterinario).
+occupation(advogado).
+occupation(professor).
+occupation(medico).
+occupation(militar).
 
 % occupationCustumer(numberCustumer, occupation)
 occupationCustumer(1010, veterinario).
