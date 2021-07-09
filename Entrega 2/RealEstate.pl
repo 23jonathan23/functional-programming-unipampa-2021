@@ -46,3 +46,5 @@ getCustumers(C) :- nrCustumer(C).
 %getCustumerDetailsByNumber(nrCustumer, response(age), response(occupation))
 getCustumerDetailsByNumber(N,A,O) :- ageCustumer(N,A), occupationCustumer(N,O).
 
+%getPropertiesByRealEstate(realEstate, response(properties))
+getPropertiesSaledByRealEstate(R,P) :- sale(R,P,_,_,_).
