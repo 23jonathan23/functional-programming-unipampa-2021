@@ -42,3 +42,7 @@ ageCustumer(3012, 47).
 %query
 %getCustumers(response(nrCustumer))
 getCustumers(C) :- nrCustumer(C).
+
+%getCustumerDetailsByNumber(nrCustumer, response(age), response(occupation))
+getCustumerDetailsByNumber(N,A,O) :- ageCustumer(N,A), occupationCustumer(N,O).
+
