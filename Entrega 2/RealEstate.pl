@@ -81,14 +81,26 @@ ageCustumer(3011, 35).
 ageCustumer(3012, 47).
 
 %query
-%getCustumers(response(nrCustumer))
-getCustumers(C) :- nrCustumer(C).
+%getCustumers
+getCustumers :- 
+    nrCustumer(N), 
+    write('\nCliente: '), write(N), 
+    nl, fail.
 
-%getCustumerDetailsByNumber(nrCustumer, response(age), response(occupation))
-getCustumerDetailsByNumber(N,A,O) :- ageCustumer(N,A), occupationCustumer(N,O).
+%getCustumerDetailsByNumber(nrCustumer)
+getCustumerDetailsByNumber(N) :-
+    ageCustumer(N,A),
+    occupationCustumer(N,O),
+    write('\nCliente: '), write(N),
+    write('\nIdade: '), write(A), 
+    write('\nProfissão: '), write(O).
 
-%getPropertiesByRealEstate(realEstate, response(properties))
-getPropertiesSaledByRealEstate(R,P) :- sale(R,P,_,_,_).
+% %getPropertiesByRealEstate(realEstate)
+getPropertiesSaledByRealEstate(R) :- sale(R,I,_,_,_), 
+    write('\nImovel vendido: '), write(I), nl, fail.
 
-%getCustumersByOccupation(occupation, response(nrCustumer))
-getCustumersByOccupation(O,C) :- occupationCustumer(C,O).
+% %getCustumersByOccupation(occupation)
+getCustumersByOccupation(O) :- 
+    occupationCustumer(C,O), 
+    write('\nCliente: '), write(C), 
+    nl, fail.
