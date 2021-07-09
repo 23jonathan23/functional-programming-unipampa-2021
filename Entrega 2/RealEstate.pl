@@ -26,3 +26,16 @@ occupationCustumer(2012, veterinario).
 occupationCustumer(3010, professor).
 occupationCustumer(3011, professor).
 occupationCustumer(3012, medico).
+
+% ageCustumer(numberCustumer, age)
+ageCustumer(1010, 55).
+ageCustumer(1011, 53).
+ageCustumer(1012, 40).
+ageCustumer(1013, 65).
+ageCustumer(2010, 60).
+ageCustumer(2011, 45).
+ageCustumer(2012, 39).
+ageCustumer(3010, 25).
+ageCustumer(3011, 35).
+ageCustumer(3012, 47).
+
