@@ -15,3 +15,14 @@ sale(alegrete, 'Apartamento 3 quartos', 650000, 1013, miguel).
 sale(alegrete, 'Apartamento 1 quarto', 145000, 1013, miguel).
 sale(alegrete, 'Apartamento 2 quartos', 160000, 1013, miguel).
 
+% occupationCustumer(numberCustumer, occupation)
+occupationCustumer(1010, veterinario).
+occupationCustumer(1011, medico).
+occupationCustumer(1012, militar).
+occupationCustumer(1013, advogado).
+occupationCustumer(2010, advogado).
+occupationCustumer(2011, militar).
+occupationCustumer(2012, veterinario).
+occupationCustumer(3010, professor).
+occupationCustumer(3011, professor).
+occupationCustumer(3012, medico).
