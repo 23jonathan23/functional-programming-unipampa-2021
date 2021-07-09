@@ -39,3 +39,6 @@ ageCustumer(3010, 25).
 ageCustumer(3011, 35).
 ageCustumer(3012, 47).
 
+%query
+%getCustumers(response(nrCustumer))
+getCustumers(C) :- nrCustumer(C).
