@@ -1,6 +1,6 @@
 
 %getTotalSaleValueForEachCompany
-findTotalSales :- 
+findTotalSales(F) :- 
     findall(F, realEstate(F), A),
     loop(A).
 
@@ -134,3 +134,22 @@ getCustumersByOccupation(O) :-
     occupationCustumer(C,O), 
     write('\nCliente: '), write(C), 
     nl, fail.
+
+%Busca a venda por uma imobiliaria
+getSalesByRealEstate(N, A) :-
+    findall(S, sale(N,_,S,_,_), B),
+	getSum(B,A).
+
+%loop para percorrer todas as imobiliarias
+loopSalesByRE([]).
+loopSalesByRE([H|T]) :-
+    getSalesByRealEstate(H, A),
+    write(H),
+    write('	'),
+    write(A), nl,
+    loopSalesByRE(T).
+
+%Lista as imobiliaria com maiores vendas
+getRealEstateHighestSales(F) :- 
+    findall(F, realEstate(F), A),
+    loopSalesByRE(A).
