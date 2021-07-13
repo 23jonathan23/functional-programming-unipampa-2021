@@ -1,10 +1,40 @@
+
+%getTotalSaleValueForEachCompany
+findTotalSales :- 
+    findall(F, realEstate(F), A),
+    loop(A).
+
+%loopParaCadaEmpresa
+loop([]).
+loop([H|T]) :- 
+    getAverage(H, A),
+    write(H),
+    write('  '),
+    write(A), nl,
+    loop(T).
+
+%PegaAMediaDeUmaEmpresa
+getAverage(N, A) :- 
+    getList(N, B, L),
+    A is B / L.
+
+%PegaAListOValorDaSomaEAQuantidade
+getList(N, A, L) :-
+    findall(S, sale(N,_,S,_,_), B),
+    length(B, L),
+	getSum(B,A).
+
+%RetornaASoma
+getSum([],0).
+getSum([H|T], S) :- getSum(T, R), S is R + H.
+
 realEstate(alegrete).
 realEstate(baitachao).
 realEstate(ibirapuita).
 
 % sale(realEstate, housingDetails, housingPrice, nrCustumer, saller)
 sale(alegrete, 'Casa 3 quartos', 300000, 1010, maria).
-sale(alegrete, 'Apartamento 1 quarto', 1010, maria).
+sale(alegrete, 'Apartamento 1 quarto', 100000, 1010, maria).
 sale(baitachao, 'Casa 3 quartos', 700000, 2010, paulo).
 sale(ibirapuita, 'Apartamento 1 quarto', 130000, 3010, ana).
 sale(ibirapuita, 'Casa 1 quarto', 220000, 3011, jose).
