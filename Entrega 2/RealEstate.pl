@@ -1,4 +1,72 @@
 
+%ListAllSellersByOrderOfSales
+listSellerBySales :- 
+    findall(A, seller(A), B),
+    getSmallest(B, B).
+
+%LoopThroughAllSellers
+getSmallest([], A).
+getSmallest(A, []) :- 
+    getSmallest(A, A).
+getSmallest([M|L], [H|T]) :- 
+    isSmallest([M|L], H) -> getSalesBySeller(H, S),
+    write(H), 
+    write('   '), 
+    write(S), nl,
+    select(H, [M|L], C),
+    getSmallest(C, T);
+    getSmallest([M|L], T).
+
+%VerifyIfIsTheSmallerOfTheList
+isSmallest([],A).
+isSmallest([H|T],A) :-
+    getSalesBySeller(A,V),
+    getSalesBySeller(H,D),
+    
+    isSmallest(T,A),
+    V =< D.
+
+%ReturnTheTotalSalesOfASeller
+getSalesBySeller(S,V) :- 
+    findall(P,sale(_,_,P,_,S),A),
+    getSum(A,V).
+
+
+
+%ListAllSellersByOrderOfSales
+listSellerBySales :- 
+    findall(A, seller(A), B),
+    getSmallest(B, B).
+
+%LoopThroughAllSellers
+getSmallest([], A).
+getSmallest(A, []) :- 
+    getSmallest(A, A).
+getSmallest([M|L], [H|T]) :- 
+    isSmallest([M|L], H) -> getSalesBySeller(H, S),
+    write(H), 
+    write('   '), 
+    write(S), nl,
+    select(H, [M|L], C),
+    getSmallest(C, T);
+    getSmallest([M|L], T).
+
+%VerifyIfIsTheSmallerOfTheList
+isSmallest([],A).
+isSmallest([H|T],A) :-
+    getSalesBySeller(A,V),
+    getSalesBySeller(H,D),
+    
+    isSmallest(T,A),
+    V =< D.
+
+%ReturnTheTotalSalesOfASeller
+getSalesBySeller(S,V) :- 
+    findall(P,sale(_,_,P,_,S),A),
+    getSum(A,V).
+
+
+
 %getTotalSaleValueForEachCompany
 findTotalSales(F) :- 
     findall(F, realEstate(F), A),
