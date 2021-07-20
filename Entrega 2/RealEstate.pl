@@ -1,3 +1,5 @@
+:- dynamic(ageCustumer/2).
+
 realEstate(alegrete).
 realEstate(baitachao).
 realEstate(ibirapuita).
@@ -185,6 +187,16 @@ getRealEstateHighestSales(F) :-
     findall(F, realEstate(F), A),
     loopSalesByRE(A).
 
+%Altera a idade de um cliente conforme o número do cliente
+setCustumerAge(N) :-
+    ageCustumer(N,A),
+    write('\nCliente: '),write(N),
+    write('\nIdade: '),write(A),nl,
+	write('\nDigite a idade que deseja alterar: '),read(I),nl,
+    retract(ageCustumer(N,A)),
+    assert(ageCustumer(N,I)).
+
+
 menu :- repeat,
     nl,
     write(' ###################IMOBILIÁRIAS##################'),nl,
@@ -223,6 +235,11 @@ doit(4):- nl,
 doit(5):- nl,
     findTotalSales(M),
     write(M).
+
+doit(6):- nl,
+    write('Informe o número do cliente:'),nl,
+    read(Choise),
+    setCustumerAge(Choise).
 
 doit(7):- nl,
     getRealEstateHighestSales(R),
