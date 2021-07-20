@@ -162,7 +162,7 @@ getCustumersByOccupation(O) :-
 %ListAllSellersByOrderOfSales
 listSellerBySales :- 
     findall(A, seller(A), B),
-    getSmallest(B, B).
+    getSmallest(B, B), !.
 
 %getTotalSaleValueForEachCompany
 findTotalSales(F) :- 
