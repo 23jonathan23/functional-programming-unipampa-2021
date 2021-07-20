@@ -1,101 +1,3 @@
-
-%ListAllSellersByOrderOfSales
-listSellerBySales :- 
-    findall(A, seller(A), B),
-    getSmallest(B, B).
-
-%LoopThroughAllSellers
-getSmallest([], A).
-getSmallest(A, []) :- 
-    getSmallest(A, A).
-getSmallest([M|L], [H|T]) :- 
-    isSmallest([M|L], H) -> getSalesBySeller(H, S),
-    write(H), 
-    write('   '), 
-    write(S), nl,
-    select(H, [M|L], C),
-    getSmallest(C, T);
-    getSmallest([M|L], T).
-
-%VerifyIfIsTheSmallerOfTheList
-isSmallest([],A).
-isSmallest([H|T],A) :-
-    getSalesBySeller(A,V),
-    getSalesBySeller(H,D),
-    
-    isSmallest(T,A),
-    V =< D.
-
-%ReturnTheTotalSalesOfASeller
-getSalesBySeller(S,V) :- 
-    findall(P,sale(_,_,P,_,S),A),
-    getSum(A,V).
-
-
-
-%ListAllSellersByOrderOfSales
-listSellerBySales :- 
-    findall(A, seller(A), B),
-    getSmallest(B, B).
-
-%LoopThroughAllSellers
-getSmallest([], A).
-getSmallest(A, []) :- 
-    getSmallest(A, A).
-getSmallest([M|L], [H|T]) :- 
-    isSmallest([M|L], H) -> getSalesBySeller(H, S),
-    write(H), 
-    write('   '), 
-    write(S), nl,
-    select(H, [M|L], C),
-    getSmallest(C, T);
-    getSmallest([M|L], T).
-
-%VerifyIfIsTheSmallerOfTheList
-isSmallest([],A).
-isSmallest([H|T],A) :-
-    getSalesBySeller(A,V),
-    getSalesBySeller(H,D),
-    
-    isSmallest(T,A),
-    V =< D.
-
-%ReturnTheTotalSalesOfASeller
-getSalesBySeller(S,V) :- 
-    findall(P,sale(_,_,P,_,S),A),
-    getSum(A,V).
-
-
-
-%getTotalSaleValueForEachCompany
-findTotalSales(F) :- 
-    findall(F, realEstate(F), A),
-    loop(A).
-
-%loopParaCadaEmpresa
-loop([]).
-loop([H|T]) :- 
-    getAverage(H, A),
-    write(H),
-    write('  '),
-    write(A), nl,
-    loop(T).
-
-%PegaAMediaDeUmaEmpresa
-getAverage(N, A) :- 
-    getList(N, B, L),
-    A is B / L.
-
-%PegaAListOValorDaSomaEAQuantidade
-getList(N, A, L) :-
-    findall(S, sale(N,_,S,_,_), B),
-    length(B, L),
-	getSum(B,A).
-
-%RetornaASoma
-getSum([],0).
-getSum([H|T], S) :- getSum(T, R), S is R + H.
-
 realEstate(alegrete).
 realEstate(baitachao).
 realEstate(ibirapuita).
@@ -178,6 +80,57 @@ ageCustumer(3010, 25).
 ageCustumer(3011, 35).
 ageCustumer(3012, 47).
 
+%LoopThroughAllSellers
+getSmallest([], A).
+getSmallest(A, []) :- 
+    getSmallest(A, A).
+getSmallest([M|L], [H|T]) :- 
+    isSmallest([M|L], H) -> getSalesBySeller(H, S),
+    write(H), 
+    write('   '), 
+    write(S), nl,
+    select(H, [M|L], C),
+    getSmallest(C, T);
+    getSmallest([M|L], T).
+
+%VerifyIfIsTheSmallerOfTheList
+isSmallest([],A).
+isSmallest([H|T],A) :-
+    getSalesBySeller(A,V),
+    getSalesBySeller(H,D),
+    
+    isSmallest(T,A),
+    V =< D.
+
+%ReturnTheTotalSalesOfASeller
+getSalesBySeller(S,V) :- 
+    findall(P,sale(_,_,P,_,S),A),
+    getSum(A,V).
+
+%loopParaCadaEmpresa
+loop([]).
+loop([H|T]) :- 
+    getAverage(H, A),
+    write(H),
+    write('  '),
+    write(A), nl,
+    loop(T).
+
+%PegaAMediaDeUmaEmpresa
+getAverage(N, A) :- 
+    getList(N, B, L),
+    A is B / L.
+
+%PegaAListOValorDaSomaEAQuantidade
+getList(N, A, L) :-
+    findall(S, sale(N,_,S,_,_), B),
+    length(B, L),
+	getSum(B,A).
+
+%RetornaASoma
+getSum([],0).
+getSum([H|T], S) :- getSum(T, R), S is R + H.
+
 %query
 %getCustumers
 getCustumers :- 
@@ -203,6 +156,16 @@ getCustumersByOccupation(O) :-
     write('\nCliente: '), write(C), 
     nl, fail.
 
+%ListAllSellersByOrderOfSales
+listSellerBySales :- 
+    findall(A, seller(A), B),
+    getSmallest(B, B).
+
+%getTotalSaleValueForEachCompany
+findTotalSales(F) :- 
+    findall(F, realEstate(F), A),
+    loop(A).
+
 %Busca a venda por uma imobiliaria
 getSalesByRealEstate(N, A) :-
     findall(S, sale(N,_,S,_,_), B),
@@ -221,3 +184,52 @@ loopSalesByRE([H|T]) :-
 getRealEstateHighestSales(F) :- 
     findall(F, realEstate(F), A),
     loopSalesByRE(A).
+
+menu :- repeat,
+    nl,
+    write(' ###################IMOBILIÁRIAS##################'),nl,
+    write('[1]. Listar todos clientes'),nl,
+    write('[2]. Listar dados de um cliente'),nl,
+    write('[3]. Listar todas as vendas de uma imobiliária'),nl,
+    write('[4]. Listar clientes por profissão'),nl,
+    write('[5]. Exibir preço média de vendas'),nl,
+    write('[6]. Alterar idade de um cliente'),nl,
+    write('[7]. Listar imobiliárias com valores das vendas'),nl,
+    write('[8]. Listar todos vendedores'),nl,
+    write('[0]. Sair'),nl,
+    write(' #################################################'),nl,
+    write('Faça sua escolha:'),nl,
+    read(Option),
+    doit(Option),Option=0, !.
+
+doit(1):- nl,
+    getCustumers.
+
+doit(2):- nl,
+    write('Informe o numero do cliente:'),nl,
+    read(Choise),
+    getCustumerDetailsByNumber(Choise).
+
+doit(3):- nl,
+    write('Informe o nome da imobiliária:'),nl,
+    read(Choise),
+    getPropertiesSaledByRealEstate(Choise).
+
+doit(4):- nl,
+    write('Informe a ocupação:'),nl,
+    read(Choise),
+    getCustumersByOccupation(Choise).
+
+doit(5):- nl,
+    findTotalSales(M),
+    write(M).
+
+doit(7):- nl,
+    getRealEstateHighestSales(R),
+    write(R).
+
+doit(8):- nl,
+    listSellerBySales.
+
+doit(0):- nl,
+    write('Até logo e obrigado por usar nossos serviços!').
