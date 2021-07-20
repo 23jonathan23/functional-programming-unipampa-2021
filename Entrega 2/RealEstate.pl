@@ -1,3 +1,4 @@
+%Indica que o predicado ageCustumer será alterado em tempo de execução
 :- dynamic(ageCustumer/2).
 
 realEstate(alegrete).
