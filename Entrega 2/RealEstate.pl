@@ -89,8 +89,9 @@ getSmallest(A, []) :-
     getSmallest(A, A).
 getSmallest([M|L], [H|T]) :- 
     isSmallest([M|L], H) -> getSalesBySeller(H, S),
+    write('Vendedor(a) '),
     write(H), 
-    write('   '), 
+    write(' fez vendas no valor total de '), 
     write(S), nl,
     select(H, [M|L], C),
     getSmallest(C, T);
@@ -114,8 +115,9 @@ getSalesBySeller(S,V) :-
 loop([]).
 loop([H|T]) :- 
     getAverage(H, A),
+    write('Imobiliária '),
     write(H),
-    write('  '),
+    write(' fez vendas no valor total de '),
     write(A), nl,
     loop(T).
 
