@@ -83,7 +83,7 @@ loop([H|T]) :-
     getAverage(H, A),
     write('Imobiliária '),
     write(H),
-    write(' fez vendas no valor total de '),
+    write(' teve média de vendas de '),
     write(A), nl,
     loop(T).
 
