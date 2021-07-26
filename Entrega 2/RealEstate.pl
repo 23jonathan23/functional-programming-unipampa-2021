@@ -1,5 +1,5 @@
-%Indica que o predicado ageCustumer será alterado em tempo de execução
-:- dynamic(ageCustumer/2).
+%Indica que o predicado custumer será alterado em tempo de execução
+:- dynamic(custumer/3).
 
 realEstate(alegrete).
 realEstate(baitachao).
