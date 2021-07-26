@@ -176,19 +176,33 @@ getSalesByRealEstate(N, A) :-
     findall(S, sale(N,_,S,_,_), B),
 	getSum(B,A).
 
-%loop para percorrer todas as imobiliarias
-loopSalesByRE([]).
-loopSalesByRE([H|T]) :-
-    getSalesByRealEstate(H, A),
-    write(H),
-    write('	'),
-    write(A), nl,
-    loopSalesByRE(T).
+%LoopThroughAllEstates
+getBiggestValue([], A).
+getBiggestValue(A, []) :- 
+    getBiggestValue(A, A).
+getBiggestValue([M|L], [H|T]) :- 
+    isBiggestValue([M|L], H) -> getSalesByRealEstate(H, S),
+    write('Imobiliária '),
+    write(H), 
+    write(' teve vendas no valor total de '), 
+    write(S), nl,
+    select(H, [M|L], C),
+    getBiggestValue(C, T);
+    getBiggestValue([M|L], T).
+
+%VerifyIfIsTheSmallerOfTheList
+isBiggestValue([],A).
+isBiggestValue([H|T],A) :-
+    getSalesByRealEstate(A,V),
+    getSalesByRealEstate(H,D),
+    
+    isBiggestValue(T,A),
+    V >= D.
 
 %Lista as imobiliaria com maiores vendas
 getRealEstateHighestSales(F) :- 
     findall(F, realEstate(F), A),
-    loopSalesByRE(A).
+    getBiggestValue(A, A), !.
 
 %Altera a idade de um cliente conforme o número do cliente
 setCustumerAge(N) :-
