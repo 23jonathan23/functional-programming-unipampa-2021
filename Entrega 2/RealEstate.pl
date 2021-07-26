@@ -31,57 +31,23 @@ seller(marisa).
 seller(rosa).
 seller(miguel).
 
-nrCustumer(1010).
-nrCustumer(1011).
-nrCustumer(1012).
-nrCustumer(1013).
-nrCustumer(2010).
-nrCustumer(2011).
-nrCustumer(2012).
-nrCustumer(3010).
-nrCustumer(3011).
-nrCustumer(3012).
-
-age(25).
-age(35).
-age(39).
-age(40).
-age(45).
-age(47).
-age(53).
-age(55).
-age(60).
-age(65).
+%custumer(nrCustumer, ageCustumer, occupationCustumer).
+custumer(1010, 25, veterinario).
+custumer(1011, 35, medico).
+custumer(1012, 39, militar).
+custumer(1013, 40, advogado).
+custumer(2010, 45, advogado).
+custumer(2011, 47, militar).
+custumer(2012, 53, veterinario).
+custumer(3010, 55, professor).
+custumer(3011, 60, professor).
+custumer(3012, 65, medico).
 
 occupation(veterinario).
 occupation(advogado).
 occupation(professor).
 occupation(medico).
 occupation(militar).
-
-% occupationCustumer(numberCustumer, occupation)
-occupationCustumer(1010, veterinario).
-occupationCustumer(1011, medico).
-occupationCustumer(1012, militar).
-occupationCustumer(1013, advogado).
-occupationCustumer(2010, advogado).
-occupationCustumer(2011, militar).
-occupationCustumer(2012, veterinario).
-occupationCustumer(3010, professor).
-occupationCustumer(3011, professor).
-occupationCustumer(3012, medico).
-
-% ageCustumer(numberCustumer, age)
-ageCustumer(1010, 55).
-ageCustumer(1011, 53).
-ageCustumer(1012, 40).
-ageCustumer(1013, 65).
-ageCustumer(2010, 60).
-ageCustumer(2011, 45).
-ageCustumer(2012, 39).
-ageCustumer(3010, 25).
-ageCustumer(3011, 35).
-ageCustumer(3012, 47).
 
 %LoopThroughAllSellers
 getSmallest([], A).
@@ -139,14 +105,15 @@ getSum([H|T], S) :- getSum(T, R), S is R + H.
 %query
 %getCustumers
 getCustumers :- 
-    nrCustumer(N), 
-    write('\nCliente: '), write(N), 
+    custumer(N, _, _),
+    sale(I, _, _, N, _),
+    write('\nCliente: '), write(N),
+    write('\nImobiliária: '), write(I),
     nl, fail.
 
 %getCustumerDetailsByNumber(nrCustumer)
 getCustumerDetailsByNumber(N) :-
-    ageCustumer(N,A),
-    occupationCustumer(N,O),
+    custumer(N, A, O),
     write('\nCliente: '), write(N),
     write('\nIdade: '), write(A), 
     write('\nProfissão: '), write(O).
@@ -157,7 +124,7 @@ getPropertiesSaledByRealEstate(R) :- sale(R,I,_,_,_),
 
 % %getCustumersByOccupation(occupation)
 getCustumersByOccupation(O) :- 
-    occupationCustumer(C,O), 
+    custumer(C, _, O),
     write('\nCliente: '), write(C), 
     nl, fail.
 
@@ -206,12 +173,12 @@ getRealEstateHighestSales(F) :-
 
 %Altera a idade de um cliente conforme o número do cliente
 setCustumerAge(N) :-
-    ageCustumer(N,A),
+    custumer(N, A, O),
     write('\nCliente: '),write(N),
     write('\nIdade: '),write(A),nl,
 	write('\nDigite a idade que deseja alterar: '),read(I),nl,
-    retract(ageCustumer(N,A)),
-    assert(ageCustumer(N,I)).
+    retract(custumer(N, A, O)),
+    assert(custumer(N, I, O)).
 
 
 menu :- repeat,
