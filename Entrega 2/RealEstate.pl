@@ -180,6 +180,15 @@ setCustumerAge(N) :-
     retract(custumer(N, A, O)),
     assert(custumer(N, I, O)).
 
+%Altera a profissão de um cliente conforme o número do cliente
+setCustumerOccupation(N) :-
+    custumer(N, A, O),
+    write('\nCliente: '),write(N),
+    write('\nIdade: '),write(A),
+    write('\nProfissão: '),write(O),nl,
+	write('\nDigite a nova profissão: '),read(I),nl,
+    retract(custumer(N, A, O)),
+    assert(custumer(N, A, I)).
 
 menu :- repeat,
     nl,
@@ -190,8 +199,9 @@ menu :- repeat,
     write('[4]. Listar clientes por profissão'),nl,
     write('[5]. Exibir preço média de vendas'),nl,
     write('[6]. Alterar idade de um cliente'),nl,
-    write('[7]. Listar imobiliárias com valores das vendas'),nl,
-    write('[8]. Listar todos vendedores'),nl,
+    write('[7]. Alterar profissão de um cliente'),nl,
+    write('[8]. Listar imobiliárias com valores das vendas'),nl,
+    write('[9]. Listar todos vendedores'),nl,
     write('[0]. Sair'),nl,
     write(' #################################################'),nl,
     write('Faça sua escolha:'),nl,
@@ -226,10 +236,15 @@ doit(6):- nl,
     setCustumerAge(Choise).
 
 doit(7):- nl,
+    write('Informe o número do cliente:'),nl,
+    read(Choise),
+    setCustumerOccupation(Choise).
+
+doit(8):- nl,
     getRealEstateHighestSales(R),
     write(R).
 
-doit(8):- nl,
+doit(9):- nl,
     listSellerBySales.
 
 doit(0):- nl,
