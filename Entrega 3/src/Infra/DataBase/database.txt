@@ -1,0 +1,4 @@
+1;Inter;2;Grêmio;0
+1;Grêmio;1;Inter;2
+1;Juventude;0;Caxias;1
+1;Caxias;3;Juventude;4
