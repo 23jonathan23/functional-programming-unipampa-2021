@@ -3,13 +3,13 @@ module Infra.FileUtils where
 import System.IO ()
 import Domain.Match
 
-readDataBase :: IO [Match]
+readDataBase :: IO [String]
 readDataBase = do
                 contents <- readFile "Infra\\DataBase\\database.txt"
                 
                 let linesFile = lines contents
-                
-                return (parseToMatch linesFile)
+
+                return linesFile
 
 splitByDelimiter :: Char -> String -> [String]
 splitByDelimiter _ "" = []
