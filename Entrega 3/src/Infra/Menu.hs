@@ -1,9 +1,9 @@
 module Infra.Menu where
 
-import System.IO ()
-
-putStrLn"--------------Campeonato de Várzea--------------"
-putStrLn"Digite a opção desejada:"
+menu :: IO ()
+menu = do
+putStrLn"--------------Champions League--------------"
+putStrLn"Selecione uma das opções abaixo:"
 putStrLn""
 putStrLn"1. Listar estatísticas de um time"
 putStrLn"2. Classificação de um time"
@@ -15,20 +15,22 @@ putStrLn"7. Três primeiros colocados"
 putStrLn"8. Times rebaixados"
 putStrLn"9. Classificação do campeonato"
 putStrLn"0. Sair"
+putStrLn ("")
+putStrLn ("Digite a opção a ser escolhida: ")
 option <- getLine
 select option
 
 --função que recebe a opção digitada pelo usuário e retorna de acordo com a opção escolhida
-select :: Int -> IO Function
+select :: Int -> Function
 select option = do
     case option of
-        "1" -> do getStatistics
-        "2" -> do getRanking
-        "3" -> do getPerformance
-        "4" -> do getGoals
-        "5" -> do getResult
-        "6" -> do getPoints
-        "7" -> do getTopTree
-        "8" -> do getRelegateds
-        "9" -> do getGeneralRanking
-        "0" -> exit :: IO ()
+        1 -> getStatistics
+        2 -> getRanking
+        3 -> getPerformance
+        4 -> getGoals
+        5 -> getResult
+        6 -> getPoints
+        7 -> getTopTree
+        8 -> getRelegateds
+        9 -> getGeneralRanking
+        0 -> exit
