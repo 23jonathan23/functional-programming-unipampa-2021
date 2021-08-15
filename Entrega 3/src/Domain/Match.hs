@@ -1,7 +1,7 @@
 module Domain.Match where
 
-data Match = Match { 
-    currentMatch::Int,
+data Match = Match {
+    currentRound::Int,
     principalTeam::String,
     principalGoals::Int,
     strangerTeam::String,
