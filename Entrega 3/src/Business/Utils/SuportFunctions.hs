@@ -20,12 +20,12 @@ filterMatchesByTeam :: String -> [Match] -> [Match]
 filterMatchesByTeam teamName [] = []
 filterMatchesByTeam teamName matches = filter (\match -> principalTeam match == teamName || strangerTeam match == teamName) matches
 
---Retorna somente as partidas de um determinado time
+--Retorna somente as partidas de uma determinada rodada
 filterMatchesByRound :: Int -> [Match] -> [Match]
 filterMatchesByRound round [] = []
 filterMatchesByRound round matches = filter (\match -> currentRound match == round || currentRound match == round) matches
 
---Retonar as partidas de um determinado time
+--Retonar os resultados de um determinado time
 getTeamResultsByTeam :: String -> [Match] -> TeamResults
 getTeamResultsByTeam teamName matches = do
     let teamMatches = filterMatchesByTeam teamName matches
