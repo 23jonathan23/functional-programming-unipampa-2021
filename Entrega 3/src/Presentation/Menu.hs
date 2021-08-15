@@ -1,4 +1,4 @@
-module Infra.Menu where
+module Presentation.Menu where
 
 menu :: IO ()
 menu = do
