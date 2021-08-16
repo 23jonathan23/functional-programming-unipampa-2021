@@ -3,6 +3,18 @@ module Business.Utils.SuportFunctions where
 import Domain.Match
 import Domain.TeamResults
 
+--Retorna as vitórias, espates e derrotas de um determinado time
+dataByTeam :: [Match] -> String -> (Int, Int, Int)
+dataByTeam [] name = (0, 0, 0)
+dataByTeam (match:t) name
+    | principalTeam match == name && principalGoals match > strangerGoals match = updateWin (dataByTeam t name)
+    | principalTeam match == name && principalGoals match < strangerGoals match = updateLoss (dataByTeam t name)
+    | principalTeam match == name = updateDraw (dataByTeam t name)
+    | strangerTeam match == name && strangerGoals match > principalGoals match = updateWin (dataByTeam t name)
+    | strangerTeam match == name && strangerGoals match < principalGoals match = updateLoss (dataByTeam t name)
+    | strangerTeam match == name = updateDraw (dataByTeam t name)
+    | otherwise = (dataByTeam t name)
+
 --Retornar o saldo de gols da partida de um determinado time
 getGoalsOfMatchByTeam :: String -> Match -> Int
 getGoalsOfMatchByTeam teamName teamMatch

@@ -6,16 +6,14 @@ import Domain.TeamResults
 
 import Infra.Repositories.MatchRepository
 
-dataByTeam :: [Match] -> String -> (Int, Int, Int)
-dataByTeam [] name = (0, 0, 0)
-dataByTeam (match:t) name
-    | principalTeam match == name && principalGoals match > strangerGoals match = updateWin (dataByTeam t name)
-    | principalTeam match == name && principalGoals match < strangerGoals match = updateLoss (dataByTeam t name)
-    | principalTeam match == name = updateDraw (dataByTeam t name)
-    | strangerTeam match == name && strangerGoals match > principalGoals match = updateWin (dataByTeam t name)
-    | strangerTeam match == name && strangerGoals match < principalGoals match = updateLoss (dataByTeam t name)
-    | strangerTeam match == name = updateDraw (dataByTeam t name)
-    | otherwise = (dataByTeam t name)
+--Retorna as vitórias, espates e derrotas de um determinado time // requisito 1
+getTeamResultsInChampionship :: String -> IO (Int, Int, Int)
+getTeamResultsInChampionship team = do
+    matches <- getMatches
+
+    let teamData = dataByTeam matches team
+
+    return teamData
 
 --Retorna o saldo de gols de um determinado time // Requisito 4
 getGoalBalanceByTeam :: String -> IO Int
