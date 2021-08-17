@@ -3,6 +3,14 @@ module Business.Utils.SuportFunctions where
 import Domain.Match
 import Domain.TeamResults
 
+--Retorna o apriveitamento de um determinado time no campeonato
+getTotalEnjoyment :: (Int, Int, Int) -> Float
+getTotalEnjoyment (win, draw, loss) = 100 * fromIntegral (win * 3 + draw) / fromIntegral (getTotalMatches (win, draw, loss) * 3)
+
+--Retorna a soma dos três valores da tupla
+getTotalMatches :: (Int, Int, Int) -> Int
+getTotalMatches (a, b, c) = a + b + c
+
 --Retorna as vitórias, espates e derrotas de um determinado time
 dataByTeam :: [Match] -> String -> (Int, Int, Int)
 dataByTeam [] name = (0, 0, 0)

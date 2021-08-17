@@ -15,6 +15,15 @@ getTeamResultsInChampionship team = do
 
     return teamData
 
+--Retorna o apriveitamento de um determinado time no campeonato // requisito 3
+getEnjoyment :: String -> IO Float
+getEnjoyment team = do
+    results <- getTeamResultsInChampionship team
+
+    let enjoyment = getTotalEnjoyment results
+
+    return enjoyment
+
 --Retorna o saldo de gols de um determinado time // Requisito 4
 getGoalBalanceByTeam :: String -> IO Int
 getGoalBalanceByTeam teamName = do
