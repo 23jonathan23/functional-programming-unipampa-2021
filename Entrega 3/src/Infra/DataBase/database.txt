@@ -1,4 +1,12 @@
-1;Inter;2;Grêmio;0
-1;Grêmio;1;Inter;2
+1;Inter;2;Gremio;0
+1;Gremio;1;Inter;2
 1;Juventude;0;Caxias;1
 1;Caxias;3;Juventude;4
+1;Sao Paulo;1;Palmeiras;2
+1;Palmeiras;2;Sao Paulo;4
+2;Inter;1;Juventude;3
+2;Juventude;1;Inter;2
+2;Gremio;3;Sao Paulo;1
+2;Sao Paulo;1;Gremio;4
+2;Caxias;1;Palmeiras;3
+2;Palmeiras;2;Caxias;1

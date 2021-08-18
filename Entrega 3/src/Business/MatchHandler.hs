@@ -15,6 +15,17 @@ getMatchesResultsByTeamInChampionship teamName = do
 
     return (victories teamResults, draws teamResults, loss teamResults)
 
+--Retorna o saldo a classificação de um determinado time no campeonato // requisito 2
+getClassificationByTeamInChampionship :: String -> IO Int
+getClassificationByTeamInChampionship teamName = do
+    matches <- getMatches
+
+    let teamResults = getTeamResultsWithClassification matches
+
+    let teamResultsByTeam = filterTeamResultsByTeam teamName teamResults
+
+    return (classification teamResultsByTeam)
+
 --Retorna o aproveitamento de um determinado time no campeonato // requisito 3
 getEnjoymentByTeamInChampionship :: String -> IO Float
 getEnjoymentByTeamInChampionship teamName = do
@@ -45,3 +56,12 @@ getMatchesResultsByRoundAndByTeamInChampionship round teamName = do
     let teamMatchesByRound = filterMatchesByRound round teamMatches
 
     return teamMatchesByRound
+
+--Retorna o total de pontos de um determinado time no campeonato // requisito 6
+getTotalPointsByTeamInChampionship :: String -> IO Int
+getTotalPointsByTeamInChampionship teamName = do
+    matches <- getMatches
+
+    let teamResults = getTeamResultsByTeam teamName matches
+
+    return (totalPoints teamResults)

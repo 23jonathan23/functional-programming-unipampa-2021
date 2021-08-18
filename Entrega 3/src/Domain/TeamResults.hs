@@ -6,5 +6,6 @@ data TeamResults = TeamResults {
     classification::Int,
     victories::Int,
     loss::Int,
-    draws::Int
+    draws::Int,
+    totalPoints::Int
 } deriving Show
