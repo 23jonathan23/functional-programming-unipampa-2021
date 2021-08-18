@@ -7,26 +7,26 @@ import Domain.TeamResults
 import Infra.Repositories.MatchRepository
 
 --Retorna as vitórias, espates e derrotas de um determinado time // requisito 1
-getTeamResultsInChampionship :: String -> IO (Int, Int, Int)
-getTeamResultsInChampionship team = do
+getMatchesResultsByTeamInChampionship :: String -> IO (Int, Int, Int)
+getMatchesResultsByTeamInChampionship teamName = do
     matches <- getMatches
 
-    let teamData = dataByTeam matches team
+    let teamResults = getTeamResultsByTeam teamName matches
 
-    return teamData
+    return (victories teamResults, draws teamResults, loss teamResults)
 
---Retorna o apriveitamento de um determinado time no campeonato // requisito 3
-getEnjoyment :: String -> IO Float
-getEnjoyment team = do
-    results <- getTeamResultsInChampionship team
+--Retorna o aproveitamento de um determinado time no campeonato // requisito 3
+getEnjoymentByTeamInChampionship :: String -> IO Float
+getEnjoymentByTeamInChampionship teamName = do
+    results <- getMatchesResultsByTeamInChampionship teamName
 
     let enjoyment = getTotalEnjoyment results
 
     return enjoyment
 
---Retorna o saldo de gols de um determinado time // Requisito 4
-getGoalBalanceByTeam :: String -> IO Int
-getGoalBalanceByTeam teamName = do
+--Retorna o saldo de gols de um determinado time // requisito 4
+getGoalBalanceByTeamInChampionship :: String -> IO Int
+getGoalBalanceByTeamInChampionship teamName = do
     matches <- getMatches
 
     let teamResults = getTeamResultsByTeam teamName matches
@@ -35,9 +35,9 @@ getGoalBalanceByTeam teamName = do
 
 
 --Retorna os resultados das partidas de uma determinada rodada 
--- e de um determinado time // Requisito 5
-getMatchesResultsByRoundAndByTeam :: Int -> String -> IO [Match]
-getMatchesResultsByRoundAndByTeam round teamName = do
+-- e de um determinado time // requisito 5
+getMatchesResultsByRoundAndByTeamInChampionship :: Int -> String -> IO [Match]
+getMatchesResultsByRoundAndByTeamInChampionship round teamName = do
     matches <- getMatches
 
     let teamMatches = filterMatchesByTeam teamName matches

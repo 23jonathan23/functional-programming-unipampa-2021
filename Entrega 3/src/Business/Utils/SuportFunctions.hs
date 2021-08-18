@@ -12,16 +12,16 @@ getTotalMatches :: (Int, Int, Int) -> Int
 getTotalMatches (a, b, c) = a + b + c
 
 --Retorna as vitórias, espates e derrotas de um determinado time
-dataByTeam :: [Match] -> String -> (Int, Int, Int)
-dataByTeam [] name = (0, 0, 0)
-dataByTeam (match:t) name
-    | principalTeam match == name && principalGoals match > strangerGoals match = updateWin (dataByTeam t name)
-    | principalTeam match == name && principalGoals match < strangerGoals match = updateLoss (dataByTeam t name)
-    | principalTeam match == name = updateDraw (dataByTeam t name)
-    | strangerTeam match == name && strangerGoals match > principalGoals match = updateWin (dataByTeam t name)
-    | strangerTeam match == name && strangerGoals match < principalGoals match = updateLoss (dataByTeam t name)
-    | strangerTeam match == name = updateDraw (dataByTeam t name)
-    | otherwise = (dataByTeam t name)
+getMatchesResultsByTeam :: String -> [Match] -> (Int, Int, Int)
+getMatchesResultsByTeam teamName [] = (0, 0, 0)
+getMatchesResultsByTeam teamName (match:t)
+    | principalTeam match == teamName && principalGoals match > strangerGoals match = updateWin (getMatchesResultsByTeam teamName t)
+    | principalTeam match == teamName && principalGoals match < strangerGoals match = updateLoss (getMatchesResultsByTeam teamName t)
+    | principalTeam match == teamName = updateDraw (getMatchesResultsByTeam teamName t)
+    | strangerTeam match == teamName && strangerGoals match > principalGoals match = updateWin (getMatchesResultsByTeam teamName t)
+    | strangerTeam match == teamName && strangerGoals match < principalGoals match = updateLoss (getMatchesResultsByTeam teamName t)
+    | strangerTeam match == teamName = updateDraw (getMatchesResultsByTeam teamName t)
+    | otherwise = getMatchesResultsByTeam teamName t
 
 --Retornar o saldo de gols da partida de um determinado time
 getGoalsOfMatchByTeam :: String -> Match -> Int
