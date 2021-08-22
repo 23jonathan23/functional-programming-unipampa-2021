@@ -65,3 +65,19 @@ getTotalPointsByTeamInChampionship teamName = do
     let teamResults = getTeamResultsByTeam teamName matches
 
     return (totalPoints teamResults)
+
+-- Retorna a classificação até o "top" passado como parametro // requisito 7
+getTopClassificationInChampionship :: Int -> IO [TeamResults]
+getTopClassificationInChampionship top = do
+    matches <- getMatches
+
+    let teamResults = getTeamResultsWithClassification matches
+
+    let classificationByTop = filterTeamByTop top teamResults
+
+    return (classificationByTop)
+
+
+
+
+

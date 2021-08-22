@@ -105,6 +105,11 @@ filterMatchesByRound round matches = filter (\match -> currentRound match == rou
 filterTeamResultsByTeam :: String -> [TeamResults] -> TeamResults
 filterTeamResultsByTeam teamName teamResults = head (filter (\teamResults -> teamName == name teamResults) teamResults)
 
+--Retorna a classificação até o "top" especificado como parametro
+filterTeamByTop :: Int -> [TeamResults] -> [TeamResults]
+filterTeamByTop top [] = []
+filterTeamByTop top teamResults = filter (\teamResults -> classification teamResults <= top) teamResults
+
 --Retonar os resultados de um determinado time
 getTeamResultsByTeam :: String -> [Match] -> TeamResults
 getTeamResultsByTeam teamName matches = do
