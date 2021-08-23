@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 module Business.Utils.SuportFunctions where
 
 import Domain.Match
@@ -137,6 +138,17 @@ getTeamResultsWithClassification matches = do
     
     teamResultsWithClassification
 
+--Retorna a classificação geral do campeonato
+getOverallClassification :: [Match] -> [TeamResults]
+getOverallClassification [] = []
+getOverallClassification matches = do
+    let teamNames = getTeamNames matches
+
+    let teamResults = foldl (\accumulator teamName -> accumulator ++ [getTeamResultsByTeam teamName matches]) [] teamNames
+
+    let overallClassification = sortDescTeamResultsByPoints teamResults
+
+    overallClassification
 
 updateWin :: (Int, Int, Int) -> (Int, Int, Int)
 updateWin (win, a, b) = (win + 1, a, b)

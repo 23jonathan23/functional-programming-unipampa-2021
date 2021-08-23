@@ -71,11 +71,27 @@ getTopClassificationInChampionship :: Int -> IO [TeamResults]
 getTopClassificationInChampionship top = do
     matches <- getMatches
 
-    let teamResults = getTeamResultsWithClassification matches
+    let classification = getTeamResultsWithClassification matches
 
-    let classificationByTop = filterTeamByTop top teamResults
+    let topClassificationInChampionship = filterTeamByTop top classification
 
-    return (classificationByTop)
+    return topClassificationInChampionship
+
+--Retorna os times rebaixados // requisito 8
+
+
+--Retorna a classificação geral dos times // requisito 9
+getClassification :: IO [TeamResults]
+getClassification = do
+
+    matches <- getMatches
+
+    let overallClassification = getOverallClassification matches
+
+    return overallClassification
+
+
+
 
 
 
