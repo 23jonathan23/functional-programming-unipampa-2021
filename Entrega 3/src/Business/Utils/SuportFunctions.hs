@@ -121,6 +121,9 @@ filterTeamByTop :: Int -> [TeamResults] -> [TeamResults]
 filterTeamByTop top [] = []
 filterTeamByTop top teamResults = filter (\teamResults -> classification teamResults <= top) teamResults
 
+-- filterDrawsInClassification :: [TeamResults] -> [TeamResults]
+
+
 --Retonar os resultados de um determinado time
 getTeamResultsByTeam :: String -> [Match] -> TeamResults
 getTeamResultsByTeam teamName matches = do
@@ -151,6 +154,16 @@ getTeamResultsWithClassification matches = do
     let teamResultsWithClassification = map (\teamResults -> changeClassificationFieldFromTeamResults (getTeamResultsIndex 1 teamResults sortedTeamResults) teamResults) sortedTeamResults
     
     teamResultsWithClassification
+
+getTeamRelegateds :: [TeamResults] -> [TeamResults]
+getTeamRelegateds [] = []
+getTeamRelegateds teamResults = do
+
+    let teamResultsOrdAsc = sortAscTeamResultsByPoints teamResults
+
+    let relegateds = take 3 teamResultsOrdAsc
+
+    relegateds    
 
 updateWin :: (Int, Int, Int) -> (Int, Int, Int)
 updateWin (win, a, b) = (win + 1, a, b)
