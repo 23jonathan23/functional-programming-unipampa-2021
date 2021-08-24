@@ -40,9 +40,9 @@ removeDuplicateElementsInList (head:tail)
 
 --Retorna os resultados com a nova classification
 changeClassificationFieldFromTeamResults:: Int -> TeamResults -> TeamResults
-changeClassificationFieldFromTeamResults newClassification 
-    (TeamResults name goals classification victories loss draws totalPoints) = 
-        TeamResults name goals newClassification victories loss draws totalPoints
+changeClassificationFieldFromTeamResults newClassification  
+    (TeamResults classification name totalPoints victories draws loss goalsFor goalsAgainst goalsDifference) = 
+        TeamResults newClassification name totalPoints victories draws loss goalsFor goalsAgainst goalsDifference
 
 --Retorna o total de pontos com base nas vitórias e empates de um time
 getTotalPointsInChampionship :: (Int, Int) -> Int
@@ -60,7 +60,7 @@ getTeamNames matches = do
 
    teamNames
 
---Retorna o apriveitamento de um determinado time no campeonato
+--Retorna o aproveitamento de um determinado time no campeonato
 getTotalEnjoyment :: (Int, Int, Int) -> Float
 getTotalEnjoyment (win, draw, loss) = 100 * fromIntegral (win * 3 + draw) / fromIntegral (getTotalMatches (win, draw, loss) * 3)
 
@@ -68,7 +68,7 @@ getTotalEnjoyment (win, draw, loss) = 100 * fromIntegral (win * 3 + draw) / from
 getTotalMatches :: (Int, Int, Int) -> Int
 getTotalMatches (a, b, c) = a + b + c
 
---Retorna as vitórias, espates e derrotas de um determinado time
+--Retorna as vitórias, empates e derrotas de um determinado time
 getMatchesResultsByTeam :: String -> [Match] -> (Int, Int, Int)
 getMatchesResultsByTeam teamName [] = (0, 0, 0)
 getMatchesResultsByTeam teamName (match:t)
@@ -81,16 +81,26 @@ getMatchesResultsByTeam teamName (match:t)
     | otherwise = getMatchesResultsByTeam teamName t
 
 --Retornar o saldo de gols da partida de um determinado time
-getGoalsOfMatchByTeam :: String -> Match -> Int
-getGoalsOfMatchByTeam teamName teamMatch
+getGoalsForByTeam :: String -> Match -> Int
+getGoalsForByTeam teamName teamMatch
     | principalTeam teamMatch == teamName = principalGoals teamMatch
     | strangerTeam teamMatch == teamName = strangerGoals teamMatch
     | otherwise = 0
 
---Soma o total de gols de um determinado time
-sumGoalsByTeam :: String -> [Match] -> Int
-sumGoalsByTeam teamName teamMatches = 
-    foldl (\accumulator match -> accumulator + getGoalsOfMatchByTeam teamName match) 0 teamMatches
+getGoalsAgainstByTeam :: String -> Match -> Int
+getGoalsAgainstByTeam teamName teamMatch = do
+    let goalAgainst = principalGoals teamMatch - strangerGoals teamMatch
+
+    goalAgainst
+
+sumGoalsAgainstByTeam :: String -> [Match] -> Int
+sumGoalsAgainstByTeam teamName teamMatches =
+    foldl (\accumulator match -> accumulator + getGoalsAgainstByTeam teamName match) 0 teamMatches
+
+--Soma o total de gols de um determinado time Int
+sumGoalsForByTeam :: String -> [Match] -> Int
+sumGoalsForByTeam teamName teamMatches = 
+    foldl (\accumulator match -> accumulator + getGoalsForByTeam teamName match) 0 teamMatches
 
 --Retorna somente as partidas de um determinado time
 filterMatchesByTeam :: String -> [Match] -> [Match]
@@ -116,13 +126,17 @@ getTeamResultsByTeam :: String -> [Match] -> TeamResults
 getTeamResultsByTeam teamName matches = do
     let teamMatches = filterMatchesByTeam teamName matches
     
-    let goalBalance = sumGoalsByTeam teamName teamMatches
-
     let (victories, draws, loss) = getMatchesResultsByTeam teamName teamMatches
-
+   
     let totalPoints = getTotalPointsInChampionship (victories, draws)
+    
+    let goalsFor = sumGoalsForByTeam teamName teamMatches
 
-    TeamResults teamName goalBalance 0 victories loss draws totalPoints
+    let goalsAgainst = sumGoalsAgainstByTeam teamName teamMatches
+
+    let goalsDifference = goalsFor - goalsAgainst
+
+    TeamResults 0 teamName totalPoints victories draws loss goalsFor goalsAgainst goalsDifference
 
 --Retorna os resultados de todos os times com a classificação
 getTeamResultsWithClassification :: [Match] -> [TeamResults]
@@ -137,18 +151,6 @@ getTeamResultsWithClassification matches = do
     let teamResultsWithClassification = map (\teamResults -> changeClassificationFieldFromTeamResults (getTeamResultsIndex 1 teamResults sortedTeamResults) teamResults) sortedTeamResults
     
     teamResultsWithClassification
-
---Retorna a classificação geral do campeonato
-getOverallClassification :: [Match] -> [TeamResults]
-getOverallClassification [] = []
-getOverallClassification matches = do
-    let teamNames = getTeamNames matches
-
-    let teamResults = foldl (\accumulator teamName -> accumulator ++ [getTeamResultsByTeam teamName matches]) [] teamNames
-
-    let overallClassification = sortDescTeamResultsByPoints teamResults
-
-    overallClassification
 
 updateWin :: (Int, Int, Int) -> (Int, Int, Int)
 updateWin (win, a, b) = (win + 1, a, b)

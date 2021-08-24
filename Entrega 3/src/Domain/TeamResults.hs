@@ -1,11 +1,13 @@
 module Domain.TeamResults where
 
 data TeamResults = TeamResults { 
-    name::String,
-    goals::Int,
     classification::Int,
+    name::String,
+    totalPoints::Int,
     victories::Int,
-    loss::Int,
     draws::Int,
-    totalPoints::Int
+    loss::Int,
+    goalsFor::Int,
+    goalsAgainst::Int,
+    goalsDifference::Int
 } deriving Show

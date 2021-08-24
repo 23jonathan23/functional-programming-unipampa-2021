@@ -42,7 +42,7 @@ getGoalBalanceByTeamInChampionship teamName = do
 
     let teamResults = getTeamResultsByTeam teamName matches
 
-    return (goals teamResults)
+    return (goalsDifference teamResults)
 
 
 --Retorna os resultados das partidas de uma determinada rodada 
@@ -86,9 +86,22 @@ getClassification = do
 
     matches <- getMatches
 
-    let overallClassification = getOverallClassification matches
+    let results = getTeamResultsWithClassification matches
 
-    return overallClassification
+    return (results)
+    
+main :: IO()
+main = do    
+
+    results <- getClassification
+
+    putStrLn(show results)
+
+
+
+    
+
+
 
 
 
