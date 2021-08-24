@@ -6,7 +6,7 @@ import Domain.Match
 --Responsével por fazer a leitura dos dados do arquivo
 readDataBase :: IO [String]
 readDataBase = do
-                contents <- readFile "/home/evandro/Documentos/GitHub/grupo-2/Entrega 3/src/Infra/DataBase/database.txt"
+                contents <- readFile "Infra\\DataBase\\database.txt"
                 
                 let fileLines = lines contents
 
