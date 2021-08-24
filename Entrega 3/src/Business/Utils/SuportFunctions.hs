@@ -12,9 +12,10 @@ import Data.Maybe
 
 import qualified GHC.Real as Maybe
 
---Ordena a lista em ordem asc com base no total de pontos
+
+--Ordena a lista em ordem asc com base no total de pontos e satisfazendo os critérios de desempate
 sortAscTeamResultsByPoints :: [TeamResults] -> [TeamResults]
-sortAscTeamResultsByPoints = sortBy (comparing totalPoints)
+sortAscTeamResultsByPoints = sortBy (mconcat[comparing totalPoints, comparing victories, comparing goalsDifference, comparing goalsFor])
 
 --Ordena a lista em ordem desc com base no total de pontos
 sortDescTeamResultsByPoints :: [TeamResults] -> [TeamResults]
@@ -87,12 +88,14 @@ getGoalsForByTeam teamName teamMatch
     | strangerTeam teamMatch == teamName = strangerGoals teamMatch
     | otherwise = 0
 
+--Retorna os gols contra de um time em cada partida
 getGoalsAgainstByTeam :: String -> Match -> Int
 getGoalsAgainstByTeam teamName teamMatch = do
     let goalAgainst = principalGoals teamMatch - strangerGoals teamMatch
 
     goalAgainst
 
+--Retorna a soma de todos os gols contras de cada partida
 sumGoalsAgainstByTeam :: String -> [Match] -> Int
 sumGoalsAgainstByTeam teamName teamMatches =
     foldl (\accumulator match -> accumulator + getGoalsAgainstByTeam teamName match) 0 teamMatches
@@ -120,9 +123,6 @@ filterTeamResultsByTeam teamName teamResults = head (filter (\teamResults -> tea
 filterTeamByTop :: Int -> [TeamResults] -> [TeamResults]
 filterTeamByTop top [] = []
 filterTeamByTop top teamResults = filter (\teamResults -> classification teamResults <= top) teamResults
-
--- filterDrawsInClassification :: [TeamResults] -> [TeamResults]
-
 
 --Retonar os resultados de um determinado time
 getTeamResultsByTeam :: String -> [Match] -> TeamResults
@@ -155,6 +155,7 @@ getTeamResultsWithClassification matches = do
     
     teamResultsWithClassification
 
+--Retorna uma lista com os times rebaixados
 getTeamRelegateds :: [TeamResults] -> [TeamResults]
 getTeamRelegateds [] = []
 getTeamRelegateds teamResults = do
@@ -163,7 +164,7 @@ getTeamRelegateds teamResults = do
 
     let relegateds = take 3 teamResultsOrdAsc
 
-    relegateds    
+    relegateds
 
 updateWin :: (Int, Int, Int) -> (Int, Int, Int)
 updateWin (win, a, b) = (win + 1, a, b)
