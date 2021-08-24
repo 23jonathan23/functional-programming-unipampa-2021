@@ -71,14 +71,22 @@ getTopClassificationInChampionship :: Int -> IO [TeamResults]
 getTopClassificationInChampionship top = do
     matches <- getMatches
 
-    let classification = getTeamResultsWithClassification matches
+    let teamResults = getTeamResultsWithClassification matches
 
-    let topClassificationInChampionship = filterTeamByTop top classification
+    let topClassificationInChampionship = filterTeamByTop top teamResults
 
     return topClassificationInChampionship
 
 --Retorna os times rebaixados // requisito 8
+getTeamRelegatedsInChampionship :: IO [TeamResults]
+getTeamRelegatedsInChampionship = do
+    matches <- getMatches
 
+    let teamResults = getTeamResultsWithClassification matches
+
+    let relegateds = getTeamRelegateds teamResults
+
+    return relegateds
 
 --Retorna a classificação geral dos times // requisito 9
 getClassification :: IO [TeamResults]
@@ -88,25 +96,4 @@ getClassification = do
 
     let results = getTeamResultsWithClassification matches
 
-    return (results)
-    
-main :: IO()
-main = do    
-
-    results <- getClassification
-
-    putStrLn(show results)
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
+    return results
