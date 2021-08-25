@@ -4,67 +4,58 @@ import Business.MatchHandler
 import Domain.Match
 import Domain.TeamResults
 
-main = do
-    menu
-
 menu :: IO ()
 menu = do
-    putStrLn"--------------Champions League--------------"
-    putStrLn"Selecione uma das opções abaixo:"
-    putStrLn""
-    putStrLn"1. Listar estatísticas de um time"
-    putStrLn"2. Classificação de um time"
-    putStrLn"3. Aproveitamento"
-    putStrLn"4. Saldo de gols"
-    putStrLn"5. Resultado por rodada do time"
-    putStrLn"6. Número de pontos"
-    putStrLn"7. Três primeiros colocados"
-    putStrLn"8. Times rebaixados"
-    putStrLn"9. Classificação do campeonato"
-    putStrLn"0. Sair"
+    putStrLn "--------------Champions League--------------"
+    putStrLn "Selecione uma das opções abaixo:"
     putStrLn ""
-    putStrLn ("Digite a opção a ser escolhida: ")
+    putStrLn "1. Listar estatísticas de um time"
+    putStrLn "2. Classificação de um time"
+    putStrLn "3. Aproveitamento"
+    putStrLn "4. Saldo de gols"
+    putStrLn "5. Resultado por rodada do time"
+    putStrLn "6. Número de pontos"
+    putStrLn "7. Três primeiros colocados"
+    putStrLn "8. Times rebaixados"
+    putStrLn "9. Classificação do campeonato"
+    putStrLn "0. Sair"
+    putStrLn ""
+    putStrLn "Digite a opção a ser escolhida: "
     option <- getLine
-    putStrLn ""
+    selectOption option
 
-    if option == "1" 
-    then do
-        listTeamStatistics
-        menu
-    else if option == "2"
-    then do 
-        showTeamClassification
-        menu
-    else if option == "3"
-    then do 
-        showTeamEnjoyment
-        menu
-    else if option == "4"
-    then do 
-        showGoalsBalance
-        menu
-    else if option == "5"
-    then do 
-        showTeamResultByRound
-        menu
-    else if option == "6"
-    then do 
-        showPointsNumber
-        menu
-    else if option == "7"
-    then do 
-        menu
-    else if option == "8"
-    then do
-        showDowsGradedTeams
-        menu
-    else if option == "9"
-    then do 
-        showOverAllClassification
-        menu
-    else if option == "0"
-    then putStrLn "Até mais"
-    else menu
+selectOption :: String -> IO ()
+selectOption option = do
+    case option of
+        "1" -> do 
+            listTeamStatistics
+            menu
+        "2" -> do
+            showTeamClassification
+            menu
+        "3" -> do
+            showTeamEnjoyment
+            menu
+        "4" -> do
+            showGoalsBalance
+            menu
+        "5" -> do
+            showTeamResultByRound
+            menu
+        "6" -> do
+            showPointsNumber
+            menu
+        "7" -> do
+            showTopThreeInChampionship
+            menu
+        "8" -> do
+            showDowsGradedTeams
+            menu
+        "9" -> do
+            showOverAllClassification
+            menu
+        "0" -> putStrLn "Até mais!"
+        _ -> menu
 
 
 listTeamStatistics :: IO ()
@@ -116,17 +107,17 @@ showTeamResultByRound = do
     results <- getMatchesResultsByRoundAndByTeamInChampionship round team
     putStrLn ""
 
-    putStrLn ("As partidas da rodada " ++ (show round) ++ " foram...")
+    putStrLn ("As partidas da rodada " ++ (show round) ++ " foram:")
     putStrLn ""
     showMatchList (reverse results)
 
 showMatchList :: [Match] -> IO ()
 showMatchList [] = do
-    putStrLn ""
+    putStr ""
 showMatchList (h:t) = do
     showMatchList t
 
-    putStrLn (principalTeam h ++ " " ++ (show (principalGoals h)) ++ ":" ++ (show (strangerGoals h)) ++ " " ++ strangerTeam h)
+    putStrLn ("rodada: " ++ (show (currentRound h)) ++ " - " ++ principalTeam h ++ " " ++ (show (principalGoals h)) ++ ":" ++ (show (strangerGoals h)) ++ " " ++ strangerTeam h)
 
 showPointsNumber :: IO ()
 showPointsNumber = do
@@ -137,22 +128,34 @@ showPointsNumber = do
 
     putStrLn ("O " ++ team ++ " fez " ++ (show points) ++ " pontos no campeonato")
 
+showTopThreeInChampionship :: IO ()
+showTopThreeInChampionship = do
+    winers <- getTopClassificationInChampionship 3
+
+    putStrLn "Os três primeiros times no campeonato são: "
+    putStrLn ""
+    showTeamResultsList (reverse winers)
+
 showDowsGradedTeams :: IO ()
 showDowsGradedTeams = do
     downGraded <- getTeamRelegatedsInChampionship
 
     putStrLn "Os times rebaixados foram"
     putStrLn ""
-
-    showTeamResultsList (reverse downGraded)
+    showTeamResultsList downGraded
 
 showTeamResultsList :: [TeamResults] -> IO ()
 showTeamResultsList [] = do
-    putStrLn ""
+    putStr ""
 showTeamResultsList (h:t) = do
     showTeamResultsList t
 
-    putStrLn ((show (classification h)) ++ ", " ++ name h ++ ", pontos - " ++ (show (totalPoints h)) ++ ", vitórias: " ++ (show (victories h)) ++ ", empates: " ++ (show (draws h)) ++ ", derrotas: " ++ (show (loss h)))
+    putStr ((show (classification h)) ++ ", " ++ name h ++ ", pontos: ")
+    putStr ((show (totalPoints h)) ++ ", vitórias: " ++ (show (victories h)))
+    putStr (", empates: " ++ (show (draws h)) ++ ", derrotas: " ++ (show (loss h)))
+    putStr (", gols feitos: " ++ (show (goalsFor h)) ++ ", goals tomados: " ++ (show (goalsAgainst h)))
+    putStr (", saldo de gols: " ++ (show (goalsDifference h)))
+    putStrLn ""
 
 showOverAllClassification :: IO ()
 showOverAllClassification = do
@@ -160,5 +163,4 @@ showOverAllClassification = do
 
     putStrLn "A classificação geral é"
     putStrLn ""
-
     showTeamResultsList (reverse classification)
