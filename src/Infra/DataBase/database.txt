@@ -1,15 +1,380 @@
-1;Inter;2;Gremio;0
-1;Juventude;0;Caxias;1
-1;Sao Paulo;1;Palmeiras;3
-2;Juventude;1;Inter;2
-2;Gremio;3;Sao Paulo;1
-2;Palmeiras;2;Caxias;1
-3;Inter;3;Caxias;1
-3;Sao Paulo;2;Juventude;1
-3;Gremio;1;Palmeiras;4
-4;Inter;5;Sao Paulo;1
-4;Caxias;3;Gremio;4
-4;Palmeiras;4;Juventude;0
-5;Juventude;2;Gremio;0
-5;Palmeiras;2;Inter;2
-5;Caxias;1;Sao Paulo;2
+1;Flamengo;3;Palmeiras;1
+1;Corinthians;4;Atletico GO;3
+1;Sao Paulo;4;Fluminense;2
+1;Atletico MG;5;Fortaleza;4
+1;Internacional;4;Sport;3
+1;Ceara;2;Gremio;4
+1;Bahia;4;Santos;3
+1;Athletico;2;America;4
+1;Chapecoense;3;Red Bull Bragantino;4
+1;Cuiaba;1;Juventude;5
+2;Fluminense;1;Cuiaba;5
+2;Palmeiras;4;Chapecoense;2
+2;Santos;3;Ceara;1
+2;America;3;Corinthians;1
+2;Gremio;3;Flamengo;5
+2;Fortaleza;2;Internacional;5
+2;Sport;5;Atletico MG;2
+2;Red Bull Bragantino;1;Bahia;5
+2;Juventude;2;Athletico;5
+2;Atletico GO;1;Sao Paulo;5
+3;Flamengo;4;America;5
+3;Palmeiras;1;Corinthians;2
+3;Santos;2;Juventude;3
+3;Atletico MG;5;Sao Paulo;5
+3;Gremio;2;Athletico;3
+3;Fortaleza;5;Sport;2
+3;Bahia;4;Internacional;1
+3;Red Bull Bragantino;1;Fluminense;1
+3;Chapecoense;1;Ceara;2
+3;Cuiaba;3;Atletico GO;3
+4;Fluminense;5;Santos;2
+4;Corinthians;5;Red Bull Bragantino;3
+4;Sao Paulo;2;Chapecoense;3
+4;America;4;Cuiaba;1
+4;Internacional;4;Atletico MG;5
+4;Ceara;1;Bahia;5
+4;Sport;3;Gremio;2
+4;Athletico;5;Flamengo;5
+4;Juventude;5;Palmeiras;5
+4;Atletico GO;5;Fortaleza;5
+5;Flamengo;3;Red Bull Bragantino;3
+5;Palmeiras;4;America;1
+5;Santos;1;Sao Paulo;4
+5;Atletico MG;1;Chapecoense;3
+5;Internacional;1;Ceara;1
+5;Fortaleza;1;Fluminense;2
+5;Bahia;4;Corinthians;4
+5;Athletico;5;Atletico GO;2
+5;Juventude;3;Sport;2
+5;Cuiaba;3;Gremio;5
+6;Flamengo;2;Fortaleza;3
+6;Corinthians;2;Sport;5
+6;Sao Paulo;3;Cuiaba;1
+6;America;4;Juventude;1
+6;Gremio;2;Santos;2
+6;Ceara;5;Atletico MG;3
+6;Bahia;3;Athletico;1
+6;Red Bull Bragantino;2;Palmeiras;2
+6;Chapecoense;2;Internacional;4
+6;Atletico GO;4;Fluminense;1
+7;Fluminense;1;Corinthians;4
+7;Palmeiras;4;Bahia;3
+7;Santos;3;Atletico MG;5
+7;America;2;Internacional;2
+7;Gremio;2;Fortaleza;2
+7;Ceara;4;Sao Paulo;3
+7;Sport;1;Cuiaba;3
+7;Athletico;5;Chapecoense;4
+7;Juventude;1;Flamengo;3
+7;Atletico MG;5;Red Bull Bragantino;4
+8;Fluminense;1;Athletico;3
+8;Corinthians;5;Sao Paulo;4
+8;Santos;4;Sport;5
+8;Atletico MG;2;Atletico GO;2
+8;Internacional;5;Palmeiras;3
+8;Fortaleza;4;Chapecoense;3
+8;Bahia;4;America;4
+8;Red Bull Bragantino;1;Ceara;3
+8;Juventude;5;Gremio;3
+8;Cuiaba;3;Flamengo;5
+9;Flamengo;1;Fluminense;1
+9;Corinthians;2;Internacional;2
+9;Sao Paulo;3;Red Bull Bragantino;2
+9;America;1;Santos;4
+9;Gremio;5;Atletico GO;1
+9;Ceara;3;Juventude;3
+9;Sport;5;Palmeiras;4
+9;Athletico;2;Fortaleza;4
+9;Chapecoense;3;Bahia;2
+9;Cuiaba;1;Atletico MG;3
+10;Fluminense;5;Ceara;2
+10;Palmeiras;5;Gremio;2
+10;Santos;1;Athletico;4
+10;Atletico MG;5;Flamengo;5
+10;Internacional;1;Sao Paulo;3
+10;Fortaleza;1;America;2
+10;Bahia;1;Juventude;2
+10;Red Bull Bragantino;5;Cuiaba;1
+10;Chapecoense;1;Corinthians;3
+10;Atletico GO;1;Sport;4
+11;Flamengo;3;Chapecoense;4
+11;Palmeiras;5;Santos;5
+11;Sao Paulo;2;Bahia;3
+11;America;1;Atletico MG;4
+11;Gremio;2;Internacional;2
+11;Fortaleza;3;Corinthians;5
+11;Sport;2;Fluminense;2
+11;Athletico;2;Red Bull Bragantino;4
+11;Juventude;5;Atletico GO;5
+11;Cuiaba;3;Ceara;1
+12;Fluminense;2;Gremio;5
+12;Corinthians;3;Atletico MG;1
+12;Sao Paulo;2;Fortaleza;3
+12;America;3;Sport;1
+12;Internacional;1;Juventude;5
+12;Ceara;5;Athletico;2
+12;Bahia;4;Flamengo;4
+12;Red Bull Bragantino;5;Santos;3
+12;Chapecoense;2;Cuiaba;3
+12;Atletico GO;1;Palmeiras;5
+13;Flamengo;2;Sao Paulo;1
+13;Palmeiras;2;Fluminense;3
+13;Santos;5;Atletico GO;3
+13;Atletico MG;5;Bahia;4
+13;Gremio;4;America;1
+13;Fortaleza;3;Red Bull Bragantino;2
+13;Sport;2;Ceara;5
+13;Athletico;5;Internacional;3
+13;Juventude;5;Chapecoense;5
+13;Cuiaba;5;Corinthians;2
+14;Fluminense;2;Juventude;1
+14;Corinthians;5;Flamengo;5
+14;Sao Paulo;5;Palmeiras;1
+14;Atletico MG;4;Athletico;1
+14;Internacional;4;Cuiaba;4
+14;Ceara;3;Fortaleza;5
+14;Bahia;4;Sport;1
+14;Red Bull Bragantino;1;Gremio;1
+14;Chapecoense;3;Santos;5
+14;Atletico GO;5;America;1
+15;Flamengo;1;Internacional;2
+15;Palmeiras;2;Fortaleza;5
+15;Santos;1;Corinthians;1
+15;America;5;Fluminense;4
+15;Gremio;1;Chapecoense;5
+15;Ceara;2;Atletico GO;5
+15;Sport;4;Red Bull Bragantino;2
+15;Athletico;3;Sao Paulo;5
+15;Juventude;3;Atletico MG;5
+15;Cuiaba;5;Bahia;4
+16;Flamengo;4;Sport;5
+16;Corinthians;4;Ceara;4
+16;Sao Paulo;1;Gremio;4
+16;Atletico MG;5;Palmeiras;4
+16;Internacional;3;Fluminense;3
+16;Fortaleza;2;Santos;3
+16;Bahia;3;Atletico GO;2
+16;Red Bull Bragantino;3;Juventude;2
+16;Chapecoense;5;America;3
+16;Cuiaba;4;Athletico;3
+17;Fluminense;3;Atletico MG;2
+17;Palmeiras;2;Cuiaba;1
+17;Santos;5;Internacional;5
+17;America;1;Red Bull Bragantino;3
+17;Gremio;1;Bahia;5
+17;Ceara;3;Flamengo;2
+17;Sport;1;Sao Paulo;4
+17;Athletico;2;Corinthians;3
+17;Juventude;2;Fortaleza;1
+17;Atletico GO;4;Chapecoense;5
+18;Fluminense;3;Bahia;4
+18;Palmeiras;2;Athletico;5
+18;Santos;5;Flamengo;1
+18;America;4;Ceara;3
+18;Gremio;2;Corinthians;5
+18;Fortaleza;1;Cuiaba;2
+18;Sport;3;Chapecoense;5
+18;Red Bull Bragantino;2;Atletico MG;4
+18;Juventude;5;Sao Paulo;3
+18;Atletico GO;5;Internacional;3
+19;Flamengo;2;Atletico GO;1
+19;Corinthians;2;Juventude;2
+19;Sao Paulo;3;America;1
+19;Atletico MG;2;Gremio;5
+19;Internacional;1;Red Bull Bragantino;4
+19;Ceara;2;Palmeiras;4
+19;Bahia;4;Fortaleza;5
+19;Athletico;2;Sport;4
+19;Chapecoense;5;Fluminense;1
+19;Cuiaba;3;Santos;4
+20;Fluminense;3;Sao Paulo;5
+20;Palmeiras;1;Flamengo;5
+20;Santos;2;Bahia;5
+20;America;5;Athletico;3
+20;Gremio;5;Ceara;1
+20;Fortaleza;1;Atletico MG;1
+20;Sport;2;Internacional;2
+20;Red Bull Bragantino;1;Chapecoense;5
+20;Juventude;5;Cuiaba;2
+20;Atletico GO;4;Corinthians;3
+21;Flamengo;5;Gremio;5
+21;Corinthians;5;America;1
+21;Sao Paulo;2;Atletico GO;2
+21;Atletico MG;1;Sport;3
+21;Internacional;1;Fortaleza;1
+21;Ceara;4;Santos;3
+21;Bahia;3;Red Bull Bragantino;4
+21;Athletico;2;Juventude;4
+21;Chapecoense;1;Palmeiras;2
+21;Cuiaba;5;Fluminense;2
+22;Fluminense;3;Red Bull Bragantino;2
+22;Corinthians;4;Palmeiras;4
+22;Sao Paulo;1;Atletico MG;1
+22;America;2;Flamengo;5
+22;Internacional;1;Bahia;4
+22;Ceara;3;Chapecoense;4
+22;Sport;2;Fortaleza;2
+22;Athletico;5;Gremio;1
+22;Juventude;3;Santos;3
+22;Atletico GO;1;Cuiaba;3
+23;Flamengo;1;Athletico;3
+23;Palmeiras;3;Juventude;2
+23;Santos;5;Fluminense;5
+23;Atletico MG;2;Internacional;2
+23;Gremio;4;Sport;5
+23;Fortaleza;5;Atletico GO;1
+23;Bahia;1;Ceara;5
+23;Red Bull Bragantino;1;Corinthians;2
+23;Chapecoense;5;Sao Paulo;3
+23;Cuiaba;5;America;4
+24;Fluminense;1;Fortaleza;3
+24;Corinthians;3;Bahia;2
+24;Sao Paulo;2;Santos;5
+24;America;5;Palmeiras;1
+24;Gremio;3;Cuiaba;5
+24;Ceara;5;Internacional;2
+24;Sport;5;Juventude;3
+24;Red Bull Bragantino;1;Flamengo;5
+24;Chapecoense;3;Atletico MG;4
+24;Atletico GO;2;Athletico;5
+25;Fluminense;4;Atletico GO;4
+25;Palmeiras;4;Red Bull Bragantino;1
+25;Santos;5;Gremio;3
+25;Atletico MG;5;Ceara;2
+25;Internacional;4;Chapecoense;1
+25;Fortaleza;4;Flamengo;3
+25;Sport;4;Corinthians;5
+25;Athletico;1;Bahia;2
+25;Juventude;2;America;3
+25;Cuiaba;3;Sao Paulo;2
+26;Flamengo;5;Juventude;3
+26;Corinthians;2;Fluminense;3
+26;Sao Paulo;5;Ceara;4
+26;Atletico MG;2;Santos;2
+26;Internacional;3;America;3
+26;Fortaleza;4;Gremio;3
+26;Bahia;5;Palmeiras;3
+26;Red Bull Bragantino;3;Atletico GO;5
+26;Chapecoense;4;Athletico;1
+26;Cuiaba;3;Sport;4
+27;Flamengo;1;Cuiaba;4
+27;Palmeiras;3;Internacional;2
+27;Sao Paulo;4;Corinthians;2
+27;America;4;Bahia;4
+27;Gremio;3;Juventude;1
+27;Ceara;2;Red Bull Bragantino;2
+27;Sport;3;Santos;3
+27;Athletico;1;Fluminense;1
+27;Chapecoense;3;Fortaleza;2
+27;Atletico GO;2;Atletico MG;1
+28;Fluminense;1;Flamengo;2
+28;Palmeiras;3;Sport;4
+28;Santos;5;America;4
+28;Atletico MG;4;Cuiaba;4
+28;Internacional;2;Corinthians;1
+28;Fortaleza;3;Athletico;4
+28;Bahia;1;Chapecoense;2
+28;Red Bull Bragantino;1;Sao Paulo;1
+28;Juventude;5;Ceara;5
+28;Atletico GO;4;Gremio;2
+29;Flamengo;5;Atletico MG;5
+29;Corinthians;4;Chapecoense;5
+29;Sao Paulo;5;Internacional;1
+29;America;5;Fortaleza;1
+29;Gremio;2;Palmeiras;3
+29;Ceara;2;Fluminense;5
+29;Sport;5;Atletico GO;1
+29;Athletico;4;Santos;4
+29;Juventude;1;Bahia;4
+29;Cuiaba;3;Red Bull Bragantino;2
+30;Fluminense;1;Sport;2
+30;Corinthians;3;Fortaleza;5
+30;Santos;1;Palmeiras;3
+30;Atletico MG;2;America;4
+30;Internacional;1;Gremio;5
+30;Ceara;3;Cuiaba;2
+30;Bahia;5;Sao Paulo;3
+30;Red Bull Bragantino;3;Athletico;4
+30;Chapecoense;3;Flamengo;5
+30;Atletico GO;2;Juventude;5
+31;Flamengo;4;Bahia;1
+31;Palmeiras;1;Atletico GO;4
+31;Santos;3;Red Bull Bragantino;3
+31;Atletico GO;2;Corinthians;5
+31;Gremio;3;Fluminense;1
+31;Fortaleza;1;Sao Paulo;5
+31;Sport;2;America;5
+31;Athletico;1;Ceara;5
+31;Juventude;4;Internacional;2
+31;Cuiaba;5;Chapecoense;2
+32;Fluminense;2;Palmeiras;3
+32;Corinthians;2;Cuiaba;5
+32;Sao Paulo;2;Flamengo;4
+32;America;1;Gremio;5
+32;Internacional;4;Athletico;1
+32;Ceara;5;Sport;4
+32;Bahia;4;Atletico MG;1
+32;Red Bull Bragantino;5;Fortaleza;3
+32;Chapecoense;4;Juventude;5
+32;Atletico GO;5;Santos;4
+33;Flamengo;3;Corinthians;3
+33;Palmeiras;1;Sao Paulo;5
+33;Santos;5;Chapecoense;4
+33;America;3;Atletico GO;1
+33;Gremio;4;Red Bull Bragantino;2
+33;Fortaleza;5;Ceara;5
+33;Sport;2;Bahia;4
+33;Athletico;5;Atletico MG;2
+33;Juventude;2;Fluminense;5
+33;Cuiaba;1;Internacional;1
+34;Fluminense;3;America;3
+34;Corinthians;2;Santos;4
+34;Sao Paulo;2;Athletico;3
+34;Atletico MG;1;Juventude;1
+34;Internacional;4;Flamengo;5
+34;Fortaleza;2;Palmeiras;3
+34;Bahia;5;Cuiaba;5
+34;Red Bull Bragantino;1;Sport;2
+34;Chapecoense;2;Gremio;2
+34;Atletico GO;3;Ceara;5
+35;Fluminense;1;Internacional;2
+35;Palmeiras;4;Atletico MG;3
+35;Santos;4;Fortaleza;5
+35;America;3;Chapecoense;3
+35;Gremio;1;Sao Paulo;3
+35;Ceara;2;Corinthians;5
+35;Sport;4;Flamengo;5
+35;Athletico;3;Cuiaba;4
+35;Juventude;1;Red Bull Bragantino;2
+35;Atletico GO;2;Bahia;5
+36;Flamengo;3;Ceara;3
+36;Corinthians;5;Athletico;3
+36;Sao Paulo;5;Sport;5
+36;Atletico MG;4;Fluminense;1
+36;Internacional;1;Santos;4
+36;Fortaleza;3;Juventude;4
+36;Bahia;1;Gremio;1
+36;Red Bull Bragantino;1;America;1
+36;Chapecoense;2;Atletico GO;2
+36;Cuiaba;1;Palmeiras;4
+37;Flamengo;1;Santos;1
+37;Corinthians;1;Gremio;2
+37;Sao Paulo;2;Juventude;1
+37;Atletico MG;2;Red Bull Bragantino;5
+37;Internacional;1;Atletico GO;4
+37;Ceara;1;America;5
+37;Bahia;1;Fluminense;2
+37;Athletico;2;Palmeiras;4
+37;Chapecoense;2;Sport;3
+37;Cuiaba;1;Fortaleza;1
+38;Fluminense;2;Chapecoense;2
+38;Palmeiras;3;Ceara;1
+38;Santos;1;Cuiaba;1
+38;America;5;Sao Paulo;1
+38;Gremio;3;Atletico MG;1
+38;Fortaleza;1;Bahia;3
+38;Sport;5;Athletico;4
+38;Red Bull Bragantino;5;Internacional;1
+38;Juventude;2;Corinthians;4
+38;Atletico GO;1;Flamengo;1
