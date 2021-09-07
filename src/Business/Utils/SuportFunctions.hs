@@ -93,12 +93,20 @@ getGoalsAgainstByTeam :: String -> Match -> Int
 getGoalsAgainstByTeam teamName teamMatch = do
     let goalAgainst = principalGoals teamMatch - strangerGoals teamMatch
 
-    goalAgainst
+    let goalAgainstPositive = filterGoalsAgainst goalAgainst
+
+    goalAgainstPositive
 
 --Retorna a soma de todos os gols contras de cada partida
 sumGoalsAgainstByTeam :: String -> [Match] -> Int
 sumGoalsAgainstByTeam teamName teamMatches =
     foldl (\accumulator match -> accumulator + getGoalsAgainstByTeam teamName match) 0 teamMatches
+
+--Função para tratar os gols contras que estavam retornando negativos
+filterGoalsAgainst :: Int->Int
+filterGoalsAgainst goal
+    |goal < 0 = -1 * goal
+    |otherwise = goal
 
 --Soma o total de gols de um determinado time Int
 sumGoalsForByTeam :: String -> [Match] -> Int
